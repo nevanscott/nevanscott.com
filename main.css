@@ -190,12 +190,23 @@ table {
 }
 
 body {
+  background-color: #fff;
+  color: #09090b;
   font-family: Fraunces, Georgia, serif;
   font-size: var(--step-0);
   line-height: 1.4;
   margin: 0 auto;
   padding: var(--space-m-l);
   max-width: 60ch;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: #4f46e5;
+  transition: color 200ms;
+}
+a:hover {
+  color: #4f46e5;
 }
 
 .hero {
@@ -215,12 +226,13 @@ body {
 }
 
 h2 {
+  color: #3f3f46;
   font-family: system-ui, sans-serif;
   font-weight: 600;
 }
 
 article {
-  border-top: solid 1px;
+  border-top: solid 1px #e4e4e7;
   padding: var(--space-l-xl) 0;
   display: flex;
   flex-direction: column;
@@ -230,6 +242,9 @@ article h3 {
   font-size: var(--step-3);
   font-weight: 600;
   line-height: 1.1;
+}
+article h3 a {
+  text-decoration: none;
 }
 article p {
   font-size: var(--step-1);
@@ -257,13 +272,16 @@ article footer > * {
 }
 .cta:hover {
   background-color: #4f46e5;
+  color: white;
 }
 
 .deets {
+  color: #71717a;
   display: flex;
   flex-wrap: wrap;
   font-family: system-ui, sans-serif;
   font-size: var(--step--1);
+  font-weight: 450;
   gap: 0.25rem;
   list-style: none;
   margin: 0;
@@ -274,11 +292,15 @@ article footer > * {
   gap: 0.25rem;
 }
 .deets li:not(:first-child)::before {
+  color: #d4d4d8;
   content: "•";
 }
 
 .meta dt {
+  color: #71717a;
   font-family: system-ui, sans-serif;
+  font-size: var(--step--1);
+  font-weight: 450;
 }
 .meta dd {
   font-size: larger;
