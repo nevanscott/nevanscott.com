@@ -305,7 +305,7 @@ article footer > * {
   color: white;
   display: block;
   font-weight: 650;
-  padding: var(--space-2xs-xs);
+  padding: var(--space-xs);
   text-align: center;
   text-decoration: none;
   transition: background-color 200ms;
