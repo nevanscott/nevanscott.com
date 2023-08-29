@@ -277,6 +277,14 @@ article footer > * {
   flex: 1;
 }
 
+.tag {
+  color: #4f46e5;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-stretch: 115%;
+  font-weight: 650;
+}
+
 .cta {
   background-color: black;
   border-radius: 0.5rem;
