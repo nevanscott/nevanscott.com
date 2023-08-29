@@ -19,6 +19,14 @@
     U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/mona-sans.woff2") format("woff2 supports variations"),
+    url("/fonts/mona-sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -189,10 +197,15 @@ table {
   --space-s-l: clamp(1.13rem, calc(0.65rem + 2.39vw), 2.5rem);
 }
 
+:root {
+  --font-serif: Fraunces, Georgia, serif;
+  --font-sans: "Mona Sans", system-ui, sans-serif;
+}
+
 body {
   background-color: #fff;
   color: #09090b;
-  font-family: Fraunces, Georgia, serif;
+  font-family: var(--font-serif);
   font-size: var(--step-0);
   line-height: 1.4;
   margin: 0 auto;
@@ -228,8 +241,11 @@ a:hover {
 
 h2 {
   color: #3f3f46;
-  font-family: system-ui, sans-serif;
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-stretch: 80%;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
 }
 
 article {
@@ -281,9 +297,10 @@ article footer > * {
   color: #71717a;
   display: flex;
   flex-wrap: wrap;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: var(--step--1);
-  font-weight: 450;
+  font-stretch: 95%;
+  font-weight: 550;
   gap: 0.25em;
   list-style: none;
   margin: 0;
@@ -300,9 +317,10 @@ article footer > * {
 
 .meta dt {
   color: #71717a;
-  font-family: system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: var(--step--1);
-  font-weight: 450;
+  font-stretch: 95%;
+  font-weight: 550;
 }
 .meta dd {
   font-size: larger;
