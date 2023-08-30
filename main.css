@@ -202,6 +202,16 @@ table {
   --font-sans: "Mona Sans", system-ui, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+  html {
+    scroll-behavior: initial;
+  }
+}
+
 body {
   background-color: #fff;
   color: #09090b;
