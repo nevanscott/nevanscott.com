@@ -420,3 +420,26 @@ article footer > * {
 .bio img {
   border-radius: var(--space-2xs);
 }
+
+.listing {
+  align-items: baseline;
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: min-content 1fr min-content 1fr;
+  grid-template-columns: repeat(1, min-content 1fr);
+}
+@media screen and (min-width: 600px) {
+  .listing {
+    grid-template-columns: repeat(2, min-content 1fr);
+  }
+}
+.listing section {
+  display: contents;
+}
+.listing h4 {
+  color: #71717a;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-stretch: 95%;
+  font-weight: 600;
+}
