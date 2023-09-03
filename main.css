@@ -247,7 +247,7 @@ main {
   font-size: var(--step-3);
   line-height: 1.1;
   display: flex;
-  gap: 0.5em;
+  gap: var(--space-s);
   flex-direction: column;
   justify-content: center;
 }
