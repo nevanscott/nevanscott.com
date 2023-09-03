@@ -443,3 +443,113 @@ article footer > * {
   font-stretch: 95%;
   font-weight: 600;
 }
+
+.favicon {
+  white-space: nowrap;
+}
+.favicon::before {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-image: url(/nevan.png);
+  border-radius: 4px;
+  content: "";
+  display: inline-block;
+  margin: 0 var(--space-2xs) 0 0;
+  height: 16px;
+  width: 16px;
+}
+.favicon.accenture::before {
+  background-image: url(/icons/accenture.png);
+}
+.favicon.adobe::before {
+  background-image: url(/icons/adobe.png);
+}
+.favicon.amex::before {
+  background-image: url(/icons/amex.png);
+}
+.favicon.answerlab::before {
+  background-image: url(/icons/answerlab.png);
+}
+.favicon.barclays::before {
+  background-image: url(/icons/barclays.png);
+}
+.favicon.bbva::before {
+  background-image: url(/icons/bbva.png);
+}
+.favicon.bluestate::before {
+  background-image: url(/icons/bluestate.png);
+}
+.favicon.condenast::before {
+  background-image: url(/icons/condenast.png);
+}
+.favicon.etsy::before {
+  background-image: url(/icons/etsy.png);
+}
+.favicon.glovo::before {
+  background-image: url(/icons/glovo.png);
+}
+.favicon.google::before {
+  background-image: url(/icons/google.png);
+}
+.favicon.hearst::before {
+  background-image: url(/icons/hearst.png);
+  border-radius: 0;
+}
+.favicon.hp::before {
+  background-image: url(/icons/hp.png);
+}
+.favicon.huge::before {
+  background-image: url(/icons/huge.png);
+}
+.favicon.ibm::before {
+  background-image: url(/icons/ibm.png);
+}
+.favicon.instagram::before {
+  background-image: url(/icons/instagram.png);
+}
+.favicon.interactius::before {
+  background-color: white;
+  background-image: url(/icons/interactius.png);
+  filter: brightness(95%) contrast(125%);
+}
+.favicon.king::before {
+  background-image: url(/icons/king.png);
+  filter: brightness(90%) contrast(125%);
+}
+.favicon.manyone::before {
+  background-image: url(/icons/manyone.png);
+}
+.favicon.mckinsey::before {
+  background-image: url(/icons/mckinsey.png);
+}
+.favicon.meetup::before {
+  background-image: url(/icons/meetup.png);
+}
+.favicon.morganstanley::before {
+  background-image: url(/icons/morganstanley.png);
+}
+.favicon.nacar::before {
+  background-image: url(/icons/nacar.png);
+}
+.favicon.north::before {
+  background-image: url(/icons/north.png);
+}
+.favicon.pentagram::before {
+  background-image: url(/icons/pentagram.png);
+}
+.favicon.salesforce::before {
+  background-image: url(/icons/salesforce.png);
+}
+.favicon.square::before {
+  background-image: url(/icons/square.png);
+}
+.favicon.tdameritrade::before {
+  background-image: url(/icons/tdameritrade.png);
+}
+.favicon.typeform::before {
+  background-image: url(/icons/typeform.png);
+  filter: brightness(95%);
+}
+.favicon.ubisoft::before {
+  background-image: url(/icons/ubisoft.png);
+}
