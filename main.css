@@ -449,8 +449,10 @@ article footer > * {
 }
 .favicon::before {
   aspect-ratio: 1;
-  background-size: cover;
+  background-size: contain;
   background-image: url(/nevan.png);
+  background-position: center center;
+  background-repeat: no-repeat;
   border-radius: 4px;
   content: "";
   display: inline-block;
@@ -508,12 +510,10 @@ article footer > * {
   background-image: url(/icons/instagram.png);
 }
 .favicon.interactius::before {
-  background-color: white;
-  background-image: url(/icons/interactius.png);
-  filter: brightness(95%) contrast(125%);
+  background-image: url(/icons/interactius.svg);
 }
 .favicon.king::before {
-  background-image: url(/icons/king.png);
+  background-image: url(/icons/king.svg);
   filter: brightness(90%) contrast(125%);
 }
 .favicon.manyone::before {
@@ -535,7 +535,8 @@ article footer > * {
   background-image: url(/icons/north.png);
 }
 .favicon.pentagram::before {
-  background-image: url(/icons/pentagram.png);
+  background-image: url(/icons/pentagram.ico);
+  border-radius: 0;
 }
 .favicon.salesforce::before {
   background-image: url(/icons/salesforce.png);
