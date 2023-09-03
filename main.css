@@ -273,6 +273,17 @@ h2 {
   top: 0;
 }
 
+p.lede {
+  font-size: var(--step-1);
+  text-wrap: balance;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
 article {
   border-bottom: solid 1px #e4e4e7;
   padding: var(--space-l-xl) 0;
@@ -291,10 +302,6 @@ article h3 {
 }
 article h3 a {
   text-decoration: none;
-}
-article p {
-  font-size: var(--step-1);
-  text-wrap: balance;
 }
 
 article header {
@@ -424,9 +431,6 @@ article footer > * {
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
-}
-.bio p {
-  font-size: var(--step-0);
 }
 .bio header p {
   color: #71717a;
