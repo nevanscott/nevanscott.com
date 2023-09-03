@@ -321,10 +321,11 @@ article footer > * {
 }
 
 .cta {
-  background-color: black;
+  background-color: #4f46e5;
   border-radius: 0.5rem;
   color: white;
   display: block;
+  font-family: var(--font-sans);
   font-weight: 650;
   padding: var(--space-xs);
   text-align: center;
@@ -332,8 +333,17 @@ article footer > * {
   transition: background-color 200ms;
 }
 .cta:hover {
-  background-color: #4f46e5;
+  background-color: #4338ca;
   color: white;
+}
+.cta.outline {
+  background-color: white;
+  border: 3px solid;
+  color: inherit;
+}
+.cta.outline:hover {
+  background-color: white;
+  color: #4f46e5;
 }
 
 .deets {
