@@ -321,7 +321,6 @@ article footer {
   align-items: center;
   display: flex;
   gap: var(--space-m-l);
-  transition: box-shadow 50ms, border 50ms;
 }
 article footer.is-fully-visible {
   border-top-color: transparent;
