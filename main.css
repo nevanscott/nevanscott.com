@@ -268,7 +268,7 @@ h2 {
   font-weight: 650;
   letter-spacing: 0.025em;
   text-transform: uppercase;
-  padding-block: var(--space-3xs-2xs);
+  padding-block: var(--space-s-m) var(--space-3xs-2xs);
   position: sticky;
   top: 0;
 }
@@ -282,6 +282,7 @@ article {
 }
 article:last-of-type {
   border: none;
+  padding-block-end: 0;
 }
 article h3 {
   font-size: var(--step-3);
