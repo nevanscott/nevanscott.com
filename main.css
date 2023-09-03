@@ -271,6 +271,7 @@ h2 {
   padding-block: var(--space-s-m) var(--space-3xs-2xs);
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 p.lede {
@@ -311,6 +312,11 @@ article header {
 }
 
 article footer {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(transparent, white var(--space-2xl));
+  margin-top: calc(-1 * var(--space-m));
+  padding-block: var(--space-2xl) var(--space-s);
   align-items: center;
   display: flex;
   gap: var(--space-m-l);
