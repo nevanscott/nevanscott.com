@@ -314,9 +314,10 @@ article header {
 article footer {
   position: sticky;
   bottom: 0;
-  background: linear-gradient(transparent, white var(--space-xl));
-  margin-top: calc(-1 * var(--space-m));
-  padding-block: var(--space-2xl) var(--space-s);
+  background-color: white;
+  border-top: solid 1px #f4f4f5;
+  padding-block: var(--space-xs) var(--space-m);
+  margin-top: var(--space-l);
   align-items: center;
   display: flex;
   gap: var(--space-m-l);
