@@ -487,6 +487,9 @@ article footer > * {
 .favicon.etsy::before {
   background-image: url(/icons/etsy.png);
 }
+.favicon.futureworkshops::before {
+  background-image: url(/icons/futureworkshops.png);
+}
 .favicon.glovo::before {
   background-image: url(/icons/glovo.png);
 }
