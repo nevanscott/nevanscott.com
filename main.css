@@ -286,14 +286,12 @@ p.lede {
 }
 
 article {
-  border-bottom: solid 1px #e4e4e7;
   padding: var(--space-l-xl) 0;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 article:last-of-type {
-  border: none;
   padding-block-end: 0;
 }
 article h3 {
@@ -313,11 +311,12 @@ article header {
 
 article footer {
   position: sticky;
-  bottom: 0;
+  bottom: -1px;
   background-color: white;
-  border-top: solid 1px #f4f4f5;
+  border-top: solid 0.5px #f4f4f5;
+  border-bottom: solid 2px #f4f4f5;
   box-shadow: 0 -8px 16px -16px rgba(0, 0, 0, 0.25);
-  padding-block: var(--space-xs) var(--space-m);
+  padding-block: var(--space-s);
   margin-top: var(--space-l);
   align-items: center;
   display: flex;
