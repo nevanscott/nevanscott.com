@@ -551,5 +551,5 @@ article footer > * {
   filter: brightness(95%);
 }
 .favicon.ubisoft::before {
-  background-image: url(/icons/ubisoft.png);
+  background-image: url(/icons/ubisoft.svg);
 }
