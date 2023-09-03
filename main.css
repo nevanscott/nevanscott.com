@@ -286,7 +286,7 @@ p.lede {
 }
 
 article {
-  padding: var(--space-l-xl) 0;
+  padding: var(--space-l-xl) 0 var(--space-m-l);
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -321,6 +321,11 @@ article footer {
   align-items: center;
   display: flex;
   gap: var(--space-m-l);
+  transition: box-shadow 200ms, border 200ms;
+}
+article footer.is-fully-visible {
+  border-top-color: transparent;
+  box-shadow: none;
 }
 article footer > * {
   flex: 1;
