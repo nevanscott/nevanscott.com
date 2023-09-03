@@ -314,7 +314,7 @@ article header {
 article footer {
   position: sticky;
   bottom: 0;
-  background: linear-gradient(transparent, white var(--space-2xl));
+  background: linear-gradient(transparent, white var(--space-xl));
   margin-top: calc(-1 * var(--space-m));
   padding-block: var(--space-2xl) var(--space-s);
   align-items: center;
