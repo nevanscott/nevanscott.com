@@ -448,6 +448,7 @@ article footer > * {
 }
 .nevan::before {
   aspect-ratio: 1;
+  background-color: #fcd34d;
   background-size: cover;
   background-image: url(/nevan.png);
   border-radius: 50%;
@@ -488,7 +489,8 @@ article footer > * {
   font-weight: 550;
 }
 .bio img {
-  border-radius: var(--space-2xs);
+  background-color: #fcd34d;
+  border-radius: 9999px;
 }
 
 .listing {
