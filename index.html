@@ -26,6 +26,13 @@
       data-api="/p/api/event"
       src="/p/js/script.js"
     ></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
   </head>
   <body>
     <main>
@@ -355,5 +362,22 @@
         </article>
       </section>
     </main>
+    <script>
+      const ctas = document.querySelectorAll(".cta");
+      ctas.forEach(function (cta) {
+        cta.addEventListener("click", function (e) {
+          const action = e.target.text.trim();
+          const course = e.target
+            .closest("article")
+            .querySelector("h3 a")
+            .text.trim();
+          plausible(action, {
+            props: {
+              course: course,
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>
