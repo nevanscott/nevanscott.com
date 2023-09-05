@@ -309,6 +309,11 @@ h4 {
   color: var(--color-zinc-900);
 }
 
+mark {
+  background-color: #fef3c7;
+  color: var(--color-zinc-950);
+}
+
 p.lede {
   color: var(--color-zinc-800);
   font-size: var(--step-1);
@@ -319,6 +324,18 @@ p.lede {
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
+}
+.stack--s {
+  gap: var(--space-s);
+}
+.stack--m {
+  gap: var(--space-m);
+}
+.stack--l {
+  gap: var(--space-l);
+}
+.stack--xl {
+  gap: var(--space-xl);
 }
 
 article {
@@ -628,4 +645,35 @@ article footer > * {
 }
 .favicon.ubisoft::before {
   background-image: url(/icons/ubisoft.svg);
+}
+
+.avatar {
+  background-color: var(--color-zinc-200);
+  border-radius: var(--step-5);
+  height: var(--step-5);
+  width: var(--step-5);
+}
+
+cite {
+  font-weight: 500;
+}
+
+.job {
+  color: var(--color-zinc-500);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 550;
+  font-stretch: 95%;
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
 }
