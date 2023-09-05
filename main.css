@@ -267,6 +267,10 @@ img {
   max-width: 100%;
 }
 
+p {
+  max-width: 40rem;
+}
+
 main {
   display: flex;
   flex-direction: column;
