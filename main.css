@@ -659,6 +659,7 @@ article footer > * {
 }
 
 cite {
+  color: var(--color-zinc-800);
   font-weight: 500;
 }
 
