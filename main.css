@@ -21,6 +21,7 @@
 
 @font-face {
   font-family: "Mona Sans";
+  font-display: swap;
   src: url("/fonts/mona-sans.woff2") format("woff2 supports variations"),
     url("/fonts/mona-sans.woff2") format("woff2-variations");
   font-weight: 200 900;
