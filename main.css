@@ -264,6 +264,7 @@ a:hover {
 }
 
 img {
+  aspect-ratio: 1;
   display: block;
   max-width: 100%;
 }
