@@ -226,11 +226,80 @@ table {
   --color-indigo-800: #3730a3;
   --color-indigo-900: #312e81;
   --color-indigo-950: #1e1b4b;
+
+  /* Amber */
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
 }
 
 :root {
   --font-serif: Fraunces, Georgia, serif;
   --font-sans: "Mona Sans", system-ui, sans-serif;
+}
+
+/* Semantic variables */
+:root {
+  --color-text: var(--color-zinc-700);
+  --color-text-attention: var(--color-indigo-600);
+  --color-text-contrast: var(--color-zinc-900);
+  --color-text-muted: var(--color-zinc-500);
+  --color-text-link: inherit;
+  --color-text-link-active: var(--color-indigo-600);
+
+  --color-typographic: var(--color-zinc-300);
+
+  --color-surface: white;
+  --color-surface-highlight: var(--color-amber-100);
+  --color-surface-image: var(--color-zinc-200);
+  --color-surface-image-highlight: var(--color-amber-300);
+  --color-surface-cta: var(--color-indigo-600);
+  --color-surface-cta-active: var(--color-indigo-700);
+  --color-surface-favicon: transparent;
+
+  --color-stroke: var(--color-zinc-200);
+  --color-stroke-contrast: var(--color-zinc-300);
+  --color-stroke-muted: var(--color-zinc-100);
+  --color-stroke-link: var(--color-indigo-600);
+
+  --color-shadow-cta: var(--color-indigo-800);
+  --color-shadow-cta-hover: var(--color-indigo-900);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: var(--color-zinc-200);
+    --color-text-attention: var(--color-indigo-400);
+    --color-text-contrast: var(--color-zinc-50);
+    --color-text-muted: var(--color-zinc-400);
+    --color-text-link: inherit;
+    --color-text-link-active: var(--color-indigo-400);
+
+    --color-typographic: var(--color-zinc-500);
+
+    --color-surface: var(--color-zinc-900);
+    --color-surface-highlight: var(--color-amber-800);
+    --color-surface-image: var(--color-zinc-200);
+    --color-surface-image-highlight: var(--color-amber-300);
+    --color-surface-cta: var(--color-indigo-600);
+    --color-surface-cta-active: var(--color-indigo-700);
+    --color-surface-favicon: var(--color-zinc-50);
+
+    --color-stroke: var(--color-zinc-600);
+    --color-stroke-contrast: var(--color-zinc-500);
+    --color-stroke-muted: var(--color-zinc-700);
+    --color-stroke-link: var(--color-indigo-400);
+
+    --color-shadow-cta: var(--color-indigo-800);
+    --color-shadow-cta-hover: var(--color-indigo-900);
+  }
 }
 
 html {
@@ -244,8 +313,8 @@ html {
 }
 
 body {
-  background-color: white;
-  color: var(--color-zinc-600);
+  background-color: var(--color-surface);
+  color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--step-0);
   line-height: 1.35;
@@ -256,11 +325,11 @@ body {
 
 a {
   color: inherit;
-  text-decoration-color: var(--color-indigo-600);
+  text-decoration-color: var(--color-stroke-link);
   transition: color 200ms;
 }
 a:hover {
-  color: var(--color-indigo-600);
+  color: var(--color-text-link-active);
 }
 
 img {
@@ -281,7 +350,7 @@ main {
 }
 
 .hero {
-  color: var(--color-zinc-900);
+  color: var(--color-text-contrast);
   font-size: var(--step-3);
   line-height: 1.1;
   display: flex;
@@ -298,9 +367,8 @@ main {
 }
 
 h2 {
-  background-color: white;
-  border-bottom: solid 1px var(--color-zinc-200);
-  color: var(--color-zinc-700);
+  background-color: var(--color-surface);
+  border-bottom: solid 1px var(--color-stroke);
   font-family: var(--font-sans);
   font-stretch: 80%;
   font-weight: 650;
@@ -313,16 +381,16 @@ h2 {
 }
 h3,
 h4 {
-  color: var(--color-zinc-900);
+  color: var(--color-text-contrast);
 }
 
 mark {
-  background-color: #fef3c7;
-  color: var(--color-zinc-950);
+  background-color: var(--color-surface-highlight);
+  color: var(--color-text-contrast);
 }
 
 p.lede {
-  color: var(--color-zinc-800);
+  color: var(--color-text-contrast);
   font-size: var(--step-1);
   text-wrap: balance;
 }
@@ -372,9 +440,9 @@ article header {
 article footer {
   position: sticky;
   bottom: -1px;
-  background-color: white;
-  border-top: solid 0.5px var(--color-zinc-100);
-  border-bottom: solid 2px var(--color-zinc-100);
+  background-color: var(--color-surface);
+  border-top: solid 0.5px var(--color-stroke-muted);
+  border-bottom: solid 2px var(--color-stroke-muted);
   box-shadow: 0 -8px 16px -16px rgba(0, 0, 0, 0.25);
   padding-block: var(--space-s);
   margin-top: var(--space-l);
@@ -391,7 +459,7 @@ article footer > * {
 }
 
 .tag {
-  color: var(--color-indigo-600);
+  color: var(--color-text-attention);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-stretch: 115%;
@@ -399,9 +467,9 @@ article footer > * {
 }
 
 .cta {
-  background-color: var(--color-indigo-600);
+  background-color: var(--color-surface-cta);
   border-radius: 0.5rem;
-  box-shadow: 0 4px 0 var(--color-indigo-800);
+  box-shadow: 0 4px 0 var(--color-shadow-cta);
   color: white;
   display: block;
   font-family: var(--font-sans);
@@ -412,27 +480,27 @@ article footer > * {
   transition: background-color 200ms;
 }
 .cta:hover {
-  background-color: var(--color-indigo-700);
-  box-shadow: 0 4px 0 var(--color-indigo-900);
+  background-color: var(--color-surface-cta-active);
+  box-shadow: 0 4px 0 var(--color-shadow-cta-hover);
   color: white;
 }
 .cta:active {
-  box-shadow: 0 2px 0 var(--color-indigo-900);
+  box-shadow: 0 2px 0 var(--color-shadow-cta-hover);
   translate: 0 2px;
 }
 .cta.outline {
-  background-color: white;
+  background-color: var(--color-surface);
   border: 3px solid;
   box-shadow: none;
-  color: var(--color-zinc-800);
+  color: var(--color-text-link);
 }
 .cta.outline:hover {
-  background-color: white;
-  color: var(--color-indigo-600);
+  background-color: var(--color-surface);
+  color: var(--color-text-link-active);
 }
 
 .deets {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   display: flex;
   flex-wrap: wrap;
   font-family: var(--font-sans);
@@ -448,19 +516,19 @@ article footer > * {
   gap: 0.25em;
 }
 .deets li:not(:first-child)::before {
-  color: var(--color-zinc-300);
+  color: var(--color-typographic);
   content: "•";
 }
 
 .meta dt {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-stretch: 95%;
   font-weight: 550;
 }
 .meta dd {
-  color: var(--color-zinc-800);
+  color: var(--color-text-contrast);
   font-size: larger;
   font-weight: 600;
   margin: 0;
@@ -472,7 +540,7 @@ article footer > * {
 }
 .nevan::before {
   aspect-ratio: 1;
-  background-color: #fcd34d;
+  background-color: var(--color-surface-image-highlight);
   background-size: cover;
   background-image: url(/nevan.png);
   border-radius: 50%;
@@ -506,14 +574,14 @@ article footer > * {
   gap: var(--space-s);
 }
 .bio header p {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-stretch: 95%;
   font-weight: 550;
 }
 .bio img {
-  background-color: #fcd34d;
+  background-color: var(--color-surface-image-highlight);
   border-radius: 9999px;
 }
 
@@ -533,7 +601,7 @@ article footer > * {
   display: contents;
 }
 .listing h4 {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-stretch: 95%;
@@ -545,10 +613,12 @@ article footer > * {
 }
 .favicon::before {
   aspect-ratio: 1;
+  background-color: var(--color-surface-favicon);
   background-size: contain;
   background-image: url(/nevan.png);
   background-position: center center;
   background-repeat: no-repeat;
+  border: solid 2px var(--color-surface-favicon);
   border-radius: 4px;
   content: "";
   display: inline-block;
@@ -655,19 +725,19 @@ article footer > * {
 }
 
 .avatar {
-  background-color: var(--color-zinc-200);
+  background-color: var(--color-surface-image);
   border-radius: var(--step-5);
   height: var(--step-5);
   width: var(--step-5);
 }
 
 cite {
-  color: var(--color-zinc-800);
+  color: var(--color-text-contrast);
   font-weight: 500;
 }
 
 .job {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-weight: 550;
@@ -687,7 +757,7 @@ figure {
 }
 
 blockquote p:first-child::before {
-  color: var(--color-zinc-300);
+  color: var(--color-typographic);
   content: "“";
   float: left;
   font-size: var(--step-4);
@@ -697,7 +767,7 @@ blockquote p:first-child::before {
 }
 
 .note {
-  color: var(--color-indigo-600);
+  color: var(--color-text-attention);
 }
 
 .footnote {
@@ -705,7 +775,7 @@ blockquote p:first-child::before {
   margin-top: var(--space-s);
 }
 .footnote::before {
-  border-top: solid 1px var(--color-zinc-300);
+  border-top: solid 1px var(--color-stroke-contrast);
   content: "";
   display: block;
   margin-bottom: var(--space-2xs);
