@@ -93,8 +93,14 @@ templateEngineOverride: liquid,md
             </div>
             <footer>
               <dl class="meta">
+                {%- if course.nextStart -%}
                 <dt>Starts on</dt>
                 <dd>{{ course.nextStart | date:"%B %d" }}</dd>
+                {%- else -%}
+                <dt>Enrollment opens</dt>
+                <dd>{{ course.nextStart | date:"%B %d" }}</dd>
+
+                {%- endif -%}
               </dl>
               <a class="cta" href="{{ course.url }}">Enroll now</a>
             </footer>
