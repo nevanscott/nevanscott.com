@@ -70,14 +70,17 @@ templateEngineOverride: liquid,md
           <header>
             {%- if course.isUpcoming -%}
             <p><span class="tag">Open for enrollment</span></p>
+            {%- elsif course.currentCohort -%}
+            <p><span class="tag">In session</span></p>
             {%- endif -%}
             <h3>
               <a href="{{ course.url }}">{{ course.title }}</a>
             </h3>
             <ul class="deets">
               <li>Live class with peers</li>
-              {%- if course.isUpcoming -%}
+              {%- if course.cohorts[0]?.sessions? -%}
               <li>{{ course.cohorts[0].sessions.length }} sessions</li>
+              {%- endif -%} {%- if course.cohorts[0]?.weeks? -%}
               <li>
                 {{ course.cohorts[0].weeks }} week{% if course.cohorts[0].weeks
                 > 1 %}s{% endif %}
@@ -93,151 +96,23 @@ templateEngineOverride: liquid,md
             </div>
             <footer>
               <dl class="meta">
-                {%- if course.nextStart -%}
+                {%- if course.isUpcoming -%}
                 <dt>Starts on</dt>
                 <dd>{{ course.nextStart | date:"%B %d" }}</dd>
                 {%- else -%}
                 <dt>Enrollment opens</dt>
-                <dd>{{ course.nextStart | date:"%B %d" }}</dd>
-
+                <dd>November</dd>
                 {%- endif -%}
               </dl>
+              {%- if course.isUpcoming -%}
               <a class="cta" href="{{ course.url }}">Enroll now</a>
+              {%- else -%}
+              <a class="cta outline" href="{{ course.url }}">Join waitlist</a>
+              {%- endif -%}
             </footer>
           </div>
         </article>
         {%- endfor -%}
-        <article>
-          <header>
-            <p><span class="tag">Open for enrollment</span></p>
-            <h3>
-              <a href="https://maven.com/button-school/figma-variables"
-                >Figma Variables</a
-              >
-            </h3>
-            <ul class="deets">
-              <li>Live class with peers</li>
-              <li>3 sessions</li>
-              <li>1 week</li>
-            </ul>
-          </header>
-          <div>
-            <div class="stack">
-              <p class="lede">
-                Leverage Figma variables to bring superpowers to your design
-                process.
-              </p>
-              <p>
-                Variables aren’t just for developers anymore! Now, from the
-                comfort of our design workspace, we can unlock the power of more
-                adaptive and flexible design. Boost your designs by adding
-                support for light, dark, and high contrast color modes. Improve
-                usability by supporting multiple densities.
-              </p>
-            </div>
-            <footer>
-              <dl class="meta">
-                <dt>Starts on</dt>
-                <dd>October&nbsp;16</dd>
-              </dl>
-              <a
-                class="cta"
-                href="https://maven.com/button-school/figma-variables"
-              >
-                Enroll now
-              </a>
-            </footer>
-          </div>
-        </article>
-        <article>
-          <header>
-            <p><span class="tag">Open for enrollment</span></p>
-            <h3>
-              <a href="https://maven.com/button-school/design-systems"
-                >Design Systems</a
-              >
-            </h3>
-            <ul class="deets">
-              <li>Live class with peers</li>
-              <li>6 sessions</li>
-              <li>3 weeks</li>
-            </ul>
-          </header>
-          <div>
-            <div class="stack">
-              <p class="lede">
-                Design&nbsp;efficiently. Design&nbsp;consistently.
-                Improve&nbsp;collaboration.
-              </p>
-              <p>
-                Building a design system helps you to ingrain a deep
-                understanding of what you’re designing and why, taking a more
-                systematic approach to how decisions are made.
-              </p>
-              <p>
-                Join us in our live, online classes where we’ll dive in and get
-                our hands dirty straight away, using Figma as our main tool. As
-                part of this course, you’ll produce a final project, either
-                making your own design system or reorganizing and enhancing the
-                design system that you currently work with.
-              </p>
-            </div>
-            <footer>
-              <dl class="meta">
-                <dt>Starts on</dt>
-                <dd>October 23</dd>
-              </dl>
-              <a
-                class="cta"
-                href="https://maven.com/button-school/design-systems"
-              >
-                Enroll now
-              </a>
-            </footer>
-          </div>
-        </article>
-        <article>
-          <header>
-            <h3>
-              <a
-                href="https://maven.com/button-school/modern-information-architecture"
-                >Modern Information Architecture</a
-              >
-            </h3>
-            <ul class="deets">
-              <li>Live class with peers</li>
-              <li>6 sessions</li>
-              <li>6 weeks</li>
-            </ul>
-          </header>
-          <div>
-            <div class="stack">
-              <p class="lede">
-                If what you know about information architecture begins and ends
-                with navigation, you’re missing out.
-              </p>
-              <p>
-                Information Architecture deals with the structure and
-                relationships of content and information. Explore research
-                methods like card sorting and tree testing, and design
-                taxonomies and content models that your users can explore and
-                navigate with ease.
-              </p>
-            </div>
-            <footer>
-              <dl class="meta">
-                <dt>Enrollment opens</dt>
-                <dd>October</dd>
-              </dl>
-              <a
-                class="cta outline"
-                href="https://maven.com/button-school/modern-information-architecture"
-              >
-                Join waitlist
-              </a>
-            </footer>
-          </div>
-        </article>
       </section>
       <section id="about">
         <h2>About Nevan</h2>
