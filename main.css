@@ -271,6 +271,7 @@ img {
 
 p {
   max-width: 40rem;
+  text-wrap: pretty;
 }
 
 main {
