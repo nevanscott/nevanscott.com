@@ -301,18 +301,26 @@ main {
 
 h2 {
   background-color: white;
-  border-bottom: solid 1px var(--color-zinc-200);
   color: var(--color-zinc-700);
   font-family: var(--font-sans);
   font-stretch: 80%;
   font-weight: 550;
   letter-spacing: 0.025em;
   text-transform: uppercase;
-  padding-block: var(--space-s-m) var(--space-3xs-2xs);
+  margin-inline: calc(-1 * var(--space-m-l));
+  padding-block: var(--space-s-m) 0;
+  padding-inline: var(--space-m-l);
   position: sticky;
   top: 0;
   z-index: 1;
 }
+h2::after {
+  border-bottom: solid 1px var(--color-zinc-200);
+  content: "";
+  display: block;
+  margin-top: var(--space-3xs-2xs);
+}
+
 h3,
 h4 {
   color: var(--color-zinc-900);
