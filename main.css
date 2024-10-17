@@ -248,7 +248,7 @@ body {
   color: var(--color-zinc-600);
   font-family: var(--font-serif);
   font-size: var(--step-0);
-  font-variation-settings: "SOFT" 75;
+  font-variation-settings: "SOFT" 60;
   font-weight: 375;
   line-height: 1.35;
   margin: var(--space-2xl-3xl) auto;
@@ -300,10 +300,11 @@ main {
 }
 
 h1 {
-  color: var(--color-zinc-900);
+  color: var(--color-zinc-800);
   font-size: var(--step-3);
   line-height: 1.1;
-  font-weight: 550;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -312,7 +313,7 @@ h2 {
   color: var(--color-zinc-700);
   font-family: var(--font-sans);
   font-stretch: 80%;
-  font-weight: 550;
+  font-weight: 650;
   letter-spacing: 0.025em;
   text-transform: uppercase;
   margin-inline: calc(-1 * var(--space-m-l));
@@ -331,7 +332,7 @@ h2::after {
 
 h3,
 h4 {
-  color: var(--color-zinc-900);
+  color: var(--color-zinc-800);
 }
 
 mark {
@@ -374,7 +375,8 @@ article:last-of-type {
 }
 article h3 {
   font-size: var(--step-3);
-  font-weight: 550;
+  font-weight: 800;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 article h3 a {
