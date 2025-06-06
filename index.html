@@ -12,7 +12,14 @@ templateEngineOverride: liquid,md
     <link rel="icon" sizes="any" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="preload"
-      href="/fonts/OttavioVariableV0.2[slnt,wght]"
+      href="/fonts/Gestura-Text-Roman-VF.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -63,17 +70,15 @@ templateEngineOverride: liquid,md
               </header>
               <p>
                 Nevan has been teaching designers and developers for over a
-                decade, and still loves every minute of it! He’s led programs at
+                decade, and still loves every minute of it! He's led programs at
                 General Assembly and Ironhack, and coached designers and
-                developers at every stage of their careers. He’s worked on
+                developers at every stage of their careers. He's worked on
                 design systems for the Swiss Red Cross, Northeastern University,
                 Rustic Pathways, and Buzzfeed.
               </p>
               <p>
-                Follow
-                <a href="https://www.linkedin.com/in/nevan/"
-                  >Nevan on LinkedIn</a
-                >
+                He writes in the first person at
+                <a href="https://notated.org">notated.org</a>.
               </p>
               <p>
                 Send inquiries to
@@ -91,7 +96,7 @@ templateEngineOverride: liquid,md
           <header>
             <h3>Where are they now?</h3>
             <p class="lede">
-              Nevan’s students have been hired by top companies as designers,
+              Nevan's students have been hired by top companies as designers,
               researchers, and leaders all over the world.
               <span class="note">*</span>
             </p>
@@ -150,9 +155,9 @@ templateEngineOverride: liquid,md
           </div>
           <p class="footnote">
             <span class="note">*</span>
-            Yes, this list is meant to be impressive. Nevan’s taught over 700
+            Yes, this list is meant to be impressive. Nevan's taught over 700
             students, the majority of whom work at mighty fine places that you
-            just might not have heard of. Name recognition isn’t everything!
+            just might not have heard of. Name recognition isn't everything!
           </p>
         </article>
         <article>
@@ -205,7 +210,7 @@ templateEngineOverride: liquid,md
               <blockquote>
                 <p>
                   <mark
-                    >I loved this course and I want to take more of Nevan’s
+                    >I loved this course and I want to take more of Nevan's
                     classes.</mark
                   >
                   It was great to get more in depth knowledge about building
@@ -232,10 +237,23 @@ templateEngineOverride: liquid,md
       <section id="colophon">
         <h2>Colophon</h2>
         <article>
-          <p>This site it built with handspun HTML and CSS, and cobbled together with <a href="https://www.11ty.dev">Eleventy</a>. Text is set in <a href="https://djr.com/notes/decembers-font-of-the-month-ottavio-bold-and-italics">Ottavio</a> by David Jonathan Ross.</p>
-          <p>Fluid typography made possible by <a href="https://utopia.fyi">Utopia</a>.</p>
-          <p>Visits tracked while respecting your privacy, courtesy of <a href="https://plausible.io">Plausible</a>.</p>
+          <p>
+            This site it built with handspun HTML and CSS, and cobbled together
+            with <a href="https://www.11ty.dev">Eleventy</a>. Text is set in
+            <a href="https://socio-type.com/demo/gestura-text">Gestura Text</a>
+            by Joe Leadbeater, Diana Ovezea, and Nigel Bates; and
+            <a href="https://rsms.me/inter/">Inter</a> by Rasmus Andersson.
+          </p>
+          <p>
+            Fluid typography made possible by
+            <a href="https://utopia.fyi">Utopia</a>.
+          </p>
+          <p>
+            Visits tracked while respecting your privacy, courtesy of
+            <a href="https://plausible.io">Plausible</a>.
+          </p>
         </article>
+      </section>
     </main>
     <script>
       const ctas = document.querySelectorAll(".cta");
