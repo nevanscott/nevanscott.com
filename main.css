@@ -770,12 +770,22 @@ blockquote p:first-child::before {
   100% { translate: 0 0; }
 }
 
+/* Variant for circles hugging the scene's left edge — horizontal drift
+   stays non-negative so they never escape outward. */
+@keyframes circle-float-inward {
+  0%   { translate: 0 0; }
+  25%  { translate: var(--float-x, 6px) var(--float-y, -10px); }
+  50%  { translate: calc(var(--float-x, 6px) * 0.5) calc(var(--float-y, -10px) * 0.3); }
+  75%  { translate: calc(var(--float-x, 6px) * 0.2) calc(var(--float-y, -10px) * -0.5); }
+  100% { translate: 0 0; }
+}
+
 .circles--top > .circle {
   animation: circle-float var(--float-duration, 24s) ease-in-out infinite;
   animation-delay: var(--float-delay, 0s);
 }
 
-.circles--top > .circle:nth-child(1) { --float-duration: 22s; --float-delay:  -3s; --float-x:  14px; --float-y: -18px; }
+.circles--top > .circle:nth-child(1) { --float-duration: 22s; --float-delay:  -3s; --float-x:  14px; --float-y: -18px; animation-name: circle-float-inward; }
 .circles--top > .circle:nth-child(2) { --float-duration: 28s; --float-delay:  -8s; --float-x: -10px; --float-y: -22px; }
 .circles--top > .circle:nth-child(3) { --float-duration: 20s; --float-delay: -14s; --float-x:  18px; --float-y: -14px; }
 .circles--top > .circle:nth-child(4) { --float-duration: 26s; --float-delay:  -5s; --float-x: -14px; --float-y: -26px; }
