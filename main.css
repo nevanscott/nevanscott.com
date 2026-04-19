@@ -713,6 +713,7 @@ blockquote p:first-child::before {
 .circles {
   position: absolute;
   pointer-events: none;
+  overflow-x: clip;
   z-index: -1;
 
   /* viewBox of the scene; overridden per variant + breakpoint */
