@@ -310,9 +310,6 @@ h2 {
   margin-inline: calc(-1 * var(--space-m-l));
   padding-block: var(--space-s-m) 0;
   padding-inline: var(--space-m-l);
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 h2::after {
   border-bottom: solid 1px var(--color-zinc-200);
