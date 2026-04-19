@@ -733,6 +733,8 @@ blockquote p:first-child::before {
 .circles--top {
   top: 0;
   right: 0;
+  /* Let floating circles drift outside the scene bounds. */
+  overflow: visible;
   /* Cap the mobile scene so circles stop growing as the viewport
      approaches the desktop breakpoint. */
   --scene-width: min(100vw, 480px);
@@ -760,6 +762,34 @@ blockquote p:first-child::before {
 }
 .circle--amber {
   background: var(--circle-amber);
+}
+
+/* Subtle bubble-like drift for top circles only; each has its own
+   duration, delay, and x/y offset so they wander out of sync. */
+@keyframes circle-float {
+  0%   { translate: 0 0; }
+  25%  { translate: var(--float-x, 6px) var(--float-y, -10px); }
+  50%  { translate: calc(var(--float-x, 6px) * -0.7) calc(var(--float-y, -10px) * 0.3); }
+  75%  { translate: calc(var(--float-x, 6px) * 0.4) calc(var(--float-y, -10px) * -0.5); }
+  100% { translate: 0 0; }
+}
+
+.circles--top > .circle {
+  animation: circle-float var(--float-duration, 24s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.circles--top > .circle:nth-child(1) { --float-duration: 22s; --float-delay:  -3s; --float-x:  14px; --float-y: -18px; }
+.circles--top > .circle:nth-child(2) { --float-duration: 28s; --float-delay:  -8s; --float-x: -10px; --float-y: -22px; }
+.circles--top > .circle:nth-child(3) { --float-duration: 20s; --float-delay: -14s; --float-x:  18px; --float-y: -14px; }
+.circles--top > .circle:nth-child(4) { --float-duration: 26s; --float-delay:  -5s; --float-x: -14px; --float-y: -26px; }
+.circles--top > .circle:nth-child(5) { --float-duration: 18s; --float-delay: -11s; --float-x:  10px; --float-y: -10px; }
+.circles--top > .circle:nth-child(6) { --float-duration: 24s; --float-delay: -17s; --float-x: -18px; --float-y: -16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .circles--top > .circle {
+    animation: none;
+  }
 }
 
 /* Mobile top: viewBox 1016 x 1095 */
