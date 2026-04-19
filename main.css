@@ -238,7 +238,6 @@ table {
 
 html {
   background-color: white;
-  width: 100vw;
   overflow-x: clip;
   position: relative;
   scroll-behavior: smooth;
@@ -252,6 +251,7 @@ html {
 
 body {
   background-color: transparent;
+  overflow-x: clip;
   color: var(--color-zinc-600);
   font-family: var(--font-serif);
   font-size: var(--step-0);
@@ -713,7 +713,6 @@ blockquote p:first-child::before {
 .circles {
   position: absolute;
   pointer-events: none;
-  overflow: clip;
   z-index: -1;
 
   /* viewBox of the scene; overridden per variant + breakpoint */
@@ -731,8 +730,6 @@ blockquote p:first-child::before {
 .circles--top {
   top: 0;
   right: 0;
-  /* Let floating circles drift outside the scene bounds. */
-  overflow: visible;
   /* Cap the mobile scene so circles stop growing as the viewport
      approaches the desktop breakpoint. */
   --scene-width: min(100vw, 480px);
