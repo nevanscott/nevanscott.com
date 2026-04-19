@@ -230,9 +230,16 @@ table {
 :root {
   --font-serif: "Gestura", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
+
+  --circle-rose: #f43f5e;
+  --circle-cyan: #0891b2;
+  --circle-amber: #fbbf24;
 }
 
 html {
+  background-color: white;
+  overflow-x: clip;
+  position: relative;
   scroll-behavior: smooth;
 }
 
@@ -243,7 +250,7 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: transparent;
   color: var(--color-zinc-600);
   font-family: var(--font-serif);
   font-size: var(--step-0);
@@ -251,7 +258,13 @@ body {
   line-height: 1.45;
   margin: var(--space-2xl-3xl) auto;
   padding: var(--space-m-l);
+  padding-bottom: calc(var(--space-m-l) + 100vw * 540 / 1125);
   max-width: 55ch;
+}
+@media screen and (min-width: 600px) {
+  body {
+    padding-bottom: calc(var(--space-m-l) + 80vw * 282 / 2404);
+  }
 }
 
 a {
@@ -697,4 +710,109 @@ blockquote p:first-child::before {
   display: block;
   margin-bottom: var(--space-2xs);
   width: var(--step-5);
+}
+
+.circles {
+  position: absolute;
+  pointer-events: none;
+  overflow: clip;
+  z-index: -1;
+
+  /* viewBox of the scene; overridden per variant + breakpoint */
+  --view-w: 1016;
+  --view-h: 1095;
+
+  /* how much of the viewport the scene fills (overridden on desktop) */
+  --scene-width: 100vw;
+  --unit: calc(var(--scene-width) / var(--view-w));
+
+  width: calc(var(--view-w) * var(--unit));
+  height: calc(var(--view-h) * var(--unit));
+}
+
+.circles--top {
+  top: 0;
+  right: 0;
+  /* Cap the mobile scene so circles stop growing as the viewport
+     approaches the desktop breakpoint. */
+  --scene-width: min(100vw, 480px);
+}
+.circles--bottom {
+  bottom: 0;
+  left: 0;
+}
+
+.circle {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  width: calc(var(--r) * 2 * var(--unit));
+  height: calc(var(--r) * 2 * var(--unit));
+  left: calc((var(--cx) - var(--r)) * var(--unit));
+  top: calc((var(--cy) - var(--r)) * var(--unit));
+}
+
+.circle--rose {
+  background: var(--circle-rose);
+}
+.circle--cyan {
+  background: var(--circle-cyan);
+}
+.circle--amber {
+  background: var(--circle-amber);
+}
+
+/* Mobile top: viewBox 1016 x 1095 */
+.circles--top > .circle:nth-child(1) { --cx: 145;   --cy: 145;   --r: 145;   }
+.circles--top > .circle:nth-child(2) { --cx: 912;   --cy: 468;   --r: 145;   }
+.circles--top > .circle:nth-child(3) { --cx: 579.5; --cy: 187.5; --r: 187.5; }
+.circles--top > .circle:nth-child(4) { --cx: 994.5; --cy: 907.5; --r: 187.5; }
+.circles--top > .circle:nth-child(5) { --cx: 684.5; --cy: 695.5; --r: 82.5;  }
+.circles--top > .circle:nth-child(6) { --cx: 994.5; --cy: 88.5;  --r: 82.5;  }
+
+/* Mobile bottom: viewBox 1125 x 540 */
+.circles--bottom {
+  --view-w: 1125;
+  --view-h: 540;
+}
+.circles--bottom > .circle:nth-child(1) { --cx: 113;   --cy: 395;   --r: 145;   }
+.circles--bottom > .circle:nth-child(2) { --cx: 630;   --cy: 395;   --r: 145;   }
+.circles--bottom > .circle:nth-child(3) { --cx: 371.5; --cy: 187.5; --r: 187.5; }
+.circles--bottom > .circle:nth-child(4) { --cx: 962.5; --cy: 352.5; --r: 187.5; }
+.circles--bottom > .circle:nth-child(5) { --cx: 331.5; --cy: 457.5; --r: 82.5;  }
+.circles--bottom > .circle:nth-child(6) { --cx: 741.5; --cy: 197.5; --r: 82.5;  }
+
+@media screen and (min-width: 600px) {
+  /* Desktop top: anchored to the right of the viewport, overlapping the
+     content column like the mockup. Tweak --scene-width to scale, and
+     --scene-right to slide the cluster horizontally. */
+  .circles--top {
+    --view-w: 1070;
+    --view-h: 891;
+    --scene-width: 36vw;
+    --scene-right: 0vw;
+    right: var(--scene-right);
+  }
+  .circles--top > .circle:nth-child(1) { --cx: 108.75;  --cy: 108.75;  --r: 108.75;  }
+  .circles--top > .circle:nth-child(2) { --cx: 788.75;  --cy: 440.75;  --r: 108.75;  }
+  .circles--top > .circle:nth-child(3) { --cx: 541.625; --cy: 151.625; --r: 140.625; }
+  .circles--top > .circle:nth-child(4) { --cx: 976.625; --cy: 749.625; --r: 140.625; }
+  .circles--top > .circle:nth-child(5) { --cx: 492.875; --cy: 502.875; --r: 61.875;  }
+  .circles--top > .circle:nth-child(6) { --cx: 897.875; --cy: 89.875;  --r: 61.875;  }
+
+  /* Desktop bottom: a band tucked in from both sides. Tweak
+     --scene-width to resize and --scene-left to slide horizontally. */
+  .circles--bottom {
+    --view-w: 2404;
+    --view-h: 282;
+    --scene-width: 80vw;
+    --scene-left: 5vw;
+    left: var(--scene-left);
+  }
+  .circles--bottom > .circle:nth-child(1) { --cx: 108.75;   --cy: 171.75;  --r: 108.75;  }
+  .circles--bottom > .circle:nth-child(2) { --cx: 959.75;   --cy: 171.75;  --r: 108.75;  }
+  .circles--bottom > .circle:nth-child(3) { --cx: 445.625;  --cy: 140.625; --r: 140.625; }
+  .circles--bottom > .circle:nth-child(4) { --cx: 2262.625; --cy: 140.625; --r: 140.625; }
+  .circles--bottom > .circle:nth-child(5) { --cx: 251.875;  --cy: 78.875;  --r: 61.875;  }
+  .circles--bottom > .circle:nth-child(6) { --cx: 1217.875; --cy: 218.875; --r: 61.875;  }
 }

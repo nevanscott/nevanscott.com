@@ -10,3 +10,6 @@ _site
 
 # Mac OS files
 .DS_Store
+
+# Working files
+_mockups
