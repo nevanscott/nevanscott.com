@@ -7,3 +7,6 @@ _site
 
 # Local Netlify folder
 .netlify
+
+# Mac OS files
+.DS_Store
