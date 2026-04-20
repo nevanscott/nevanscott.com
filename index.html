@@ -24,7 +24,7 @@ templateEngineOverride: liquid,md
       type="font/woff2"
       crossorigin
     />
-    <meta name="theme-color" content="#fcd34d" />
+    <meta name="theme-color" content="#37322f" />
     <meta
       name="description"
       content="Grow your design career with in-demand technical and strategic skills"
@@ -55,10 +55,10 @@ templateEngineOverride: liquid,md
   </head>
   <body>
     <div class="circles circles--top" aria-hidden="true">
-      <span class="circle circle--rose"></span>
-      <span class="circle circle--rose"></span>
-      <span class="circle circle--cyan"></span>
-      <span class="circle circle--cyan"></span>
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--red"></span>
+      <span class="circle circle--red"></span>
       <span class="circle circle--amber"></span>
       <span class="circle circle--amber"></span>
     </div>
@@ -256,29 +256,12 @@ templateEngineOverride: liquid,md
       </section>
     </main>
     <div class="circles circles--bottom" aria-hidden="true">
-      <span class="circle circle--rose"></span>
-      <span class="circle circle--rose"></span>
-      <span class="circle circle--cyan"></span>
-      <span class="circle circle--cyan"></span>
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--red"></span>
+      <span class="circle circle--red"></span>
       <span class="circle circle--amber"></span>
       <span class="circle circle--amber"></span>
     </div>
-    <script>
-      const ctas = document.querySelectorAll(".cta");
-      ctas.forEach(function (cta) {
-        cta.addEventListener("click", function (e) {
-          const action = e.target.text.trim();
-          const course = e.target
-            .closest("article")
-            .querySelector("h3 a")
-            .text.trim();
-          plausible(action, {
-            props: {
-              course: course,
-            },
-          });
-        });
-      });
-    </script>
   </body>
 </html>
