@@ -555,6 +555,12 @@ article footer > * {
 .favicon {
   white-space: nowrap;
 }
+/* Company icons are desaturated and inverted so dark-on-light favicons
+   read as light silhouettes against the dark page background, while
+   staying color-consistent across 30+ different brand marks. A screen
+   blend with the page background softens the near-white output and
+   lets the warm chocolate tint bleed through the icon silhouettes so
+   they feel integrated with the palette instead of cold neutral gray. */
 .favicon::before {
   aspect-ratio: 1;
   background-size: contain;
@@ -564,8 +570,10 @@ article footer > * {
   border-radius: 4px;
   content: "";
   display: inline-block;
-  margin: 0 var(--space-2xs) 0 0;
+  filter: grayscale(1) invert(1) brightness(0.95) contrast(0.9) opacity(0.85);
   height: 16px;
+  margin: 0 var(--space-2xs) 0 0;
+  mix-blend-mode: screen;
   width: 16px;
 }
 .favicon.accenture::before {
@@ -625,7 +633,6 @@ article footer > * {
 }
 .favicon.king::before {
   background-image: url(/icons/king.svg);
-  filter: brightness(90%) contrast(125%);
 }
 .favicon.manyone::before {
   background-image: url(/icons/manyone.png);
@@ -660,10 +667,52 @@ article footer > * {
 }
 .favicon.typeform::before {
   background-image: url(/icons/typeform.png);
-  filter: brightness(95%);
 }
 .favicon.ubisoft::before {
   background-image: url(/icons/ubisoft.svg);
+}
+
+/* Icons whose source marks are already light on transparent — the
+   global invert would flip them back to dark. Skip the invert and
+   slightly brighten instead so they read against the dark bg. */
+.favicon.amex::before,
+.favicon.bbva::before,
+.favicon.google::before,
+.favicon.instagram::before,
+.favicon.morganstanley::before,
+.favicon.tdameritrade::before {
+  filter: grayscale(1) brightness(1.05) contrast(0.9) opacity(0.9);
+}
+
+/* Icons whose source marks are dark but low-contrast, thin, or busy —
+   the default invert lands them in murky territory. Brightness boost
+   and full opacity push them into legible range. */
+.favicon.barclays::before,
+.favicon.etsy::before,
+.favicon.glovo::before,
+.favicon.king::before {
+  filter: grayscale(1) invert(1) brightness(1.4) contrast(0.9);
+}
+
+/* Per-icon fine-tuning after the group baselines. Each one overrides
+   the filter it would otherwise inherit above. */
+.favicon.condenast::before {
+  filter: grayscale(1) invert(1) brightness(0.95) contrast(1.3) opacity(0.9);
+}
+.favicon.glovo::before {
+  filter: grayscale(1) invert(1) brightness(1.4) contrast(1.3);
+}
+.favicon.interactius::before {
+  filter: grayscale(1) invert(1) brightness(1.3) contrast(0.9) opacity(1);
+}
+.favicon.king::before {
+  filter: grayscale(1) invert(1) brightness(3) contrast(0.9);
+}
+.favicon.morganstanley::before {
+  filter: grayscale(1) brightness(1.55) contrast(0.9) opacity(0.95);
+}
+.favicon.tdameritrade::before {
+  filter: grayscale(1) brightness(1.05) contrast(0.9) opacity(0.9);
 }
 
 .avatar {
