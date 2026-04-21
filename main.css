@@ -212,9 +212,25 @@ table {
   --color-cream:     #ede7df;
   --color-white:     #ffffff;
 
-  --color-amber:  #edb53f;
-  --color-orange: #ea6d2b;
-  --color-red:    #d64139;
+  /* Accent ramps — 3 steps each, hue-shifted along the spectrum so
+     each step gets its lightness partly from chroma: highlights drift
+     toward yellow, shadows drift toward red → purple. */
+  --color-amber-300:  #f2c456;  /* yellow-gold     */
+  --color-amber-500:  #edb53f;  /* amber (base)    */
+  --color-amber-700:  #a55f1a;  /* burnt orange    */
+
+  --color-orange-300: #ed8936;  /* bright orange   */
+  --color-orange-500: #ea6d2b;  /* orange (base)   */
+  --color-orange-700: #8c2e1a;  /* red-brown       */
+
+  --color-red-300:    #dc5a43;  /* warm red        */
+  --color-red-500:    #d64139;  /* red (base)      */
+  --color-red-700:    #7d2638;  /* wine            */
+
+  /* Convenience aliases to the base step of each ramp */
+  --color-amber:  var(--color-amber-500);
+  --color-orange: var(--color-orange-500);
+  --color-red:    var(--color-red-500);
 
   /* Theme — semantic tokens composed from the palette */
   --color-background:      var(--color-chocolate);
@@ -229,6 +245,20 @@ table {
   --color-stripe:          var(--color-vanilla);
   --color-accent:          var(--color-amber);
   --color-highlight:       var(--color-orange);
+
+  /* Decorative scene reserved at the bottom of the page.
+     --floor-height = size of the SVG grid (the visible floor only).
+     --scene-height = total height of the orb cluster sitting on top
+     of the floor. Body padding reserves the larger of the two. */
+  --floor-height: calc(100vw * 180 / 1125);
+  --scene-height: calc(100vw * 540 / 1125);
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --floor-height: max(calc(80vw * 94 / 2404), 73px);
+    --scene-height: calc(80vw * 282 / 2404);
+  }
 }
 
 html {
@@ -277,13 +307,8 @@ body {
   line-height: 1.45;
   margin: var(--space-2xl-3xl) auto;
   padding: var(--space-m-l);
-  padding-bottom: calc(var(--space-m-l) + 100vw * 540 / 1125);
+  padding-bottom: calc(var(--space-m-l) + max(var(--floor-height), var(--scene-height) + var(--floor-height) * 0.4));
   max-width: 55ch;
-}
-@media screen and (min-width: 600px) {
-  body {
-    padding-bottom: calc(var(--space-m-l) + 80vw * 282 / 2404);
-  }
 }
 
 a {
@@ -697,6 +722,24 @@ blockquote p:first-child::before {
   width: var(--step-5);
 }
 
+.floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--floor-height);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -2;
+}
+.floor-rungs line,
+.floor-spokes line {
+  stroke: var(--color-stripe);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+  fill: none;
+}
+
 .circles {
   position: absolute;
   pointer-events: none;
@@ -723,7 +766,7 @@ blockquote p:first-child::before {
   --scene-width: min(100vw, 480px);
 }
 .circles--bottom {
-  bottom: 0;
+  bottom: calc(var(--floor-height) * 0.4);
   left: 0;
 }
 
@@ -739,7 +782,6 @@ blockquote p:first-child::before {
 
 .circles--top .circle {
   border: 4px solid var(--color-background);
-
 }
 
 .circle--orange {
@@ -752,29 +794,71 @@ blockquote p:first-child::before {
   background: var(--color-amber);
 }
 
+/* Floor circles read as posterized 3D orbs — hard-stop radial
+   gradients keep the retro, dithered feel of the rest of the page. */
+.circles--bottom .circle--orange {
+  background: radial-gradient(
+    circle at 32% 28%,
+    var(--color-orange-300)  0   18%,
+    var(--color-orange-500) 18%  65%,
+    var(--color-orange-700) 65% 100%
+  );
+}
+.circles--bottom .circle--red {
+  background: radial-gradient(
+    circle at 32% 28%,
+    var(--color-red-300)  0   18%,
+    var(--color-red-500) 18%  65%,
+    var(--color-red-700) 65% 100%
+  );
+}
+.circles--bottom .circle--amber {
+  background: radial-gradient(
+    circle at 32% 28%,
+    var(--color-amber-300)  0   18%,
+    var(--color-amber-500) 18%  65%,
+    var(--color-amber-700) 65% 100%
+  );
+}
+
 /* Subtle bubble-like drift for top circles only; each has its own
-   duration, delay, and x/y offset so they wander out of sync. */
+   duration, delay, and x/y offset so they wander out of sync.
+   Animates `transform` (not the individual `translate` property) and
+   promotes each circle to its own layer to avoid subpixel snapping
+   artifacts that can flatten the top/bottom of rounded edges. */
 @keyframes circle-float {
-  0%   { translate: 0 0; }
-  25%  { translate: var(--float-x, 6px) var(--float-y, -10px); }
-  50%  { translate: calc(var(--float-x, 6px) * -0.7) calc(var(--float-y, -10px) * 0.3); }
-  75%  { translate: calc(var(--float-x, 6px) * 0.4) calc(var(--float-y, -10px) * -0.5); }
-  100% { translate: 0 0; }
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(var(--float-x, 6px), var(--float-y, -10px), 0); }
+  50%  { transform: translate3d(calc(var(--float-x, 6px) * -0.7), calc(var(--float-y, -10px) * 0.3), 0); }
+  75%  { transform: translate3d(calc(var(--float-x, 6px) * 0.4), calc(var(--float-y, -10px) * -0.5), 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* Variant for circles hugging the scene's left edge — horizontal drift
    stays non-negative so they never escape outward. */
 @keyframes circle-float-inward {
-  0%   { translate: 0 0; }
-  25%  { translate: var(--float-x, 6px) var(--float-y, -10px); }
-  50%  { translate: calc(var(--float-x, 6px) * 0.5) calc(var(--float-y, -10px) * 0.3); }
-  75%  { translate: calc(var(--float-x, 6px) * 0.2) calc(var(--float-y, -10px) * -0.5); }
-  100% { translate: 0 0; }
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(var(--float-x, 6px), var(--float-y, -10px), 0); }
+  50%  { transform: translate3d(calc(var(--float-x, 6px) * 0.5), calc(var(--float-y, -10px) * 0.3), 0); }
+  75%  { transform: translate3d(calc(var(--float-x, 6px) * 0.2), calc(var(--float-y, -10px) * -0.5), 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 .circles--top > .circle {
   animation: circle-float var(--float-duration, 24s) ease-in-out infinite;
   animation-delay: var(--float-delay, 0s);
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Safari occasionally shaves a pixel off rounded edges when
+     rasterizing the promoted layer during transform animations.
+     A clip-path uses a different (always-AA'd) path and restores
+     the perfectly round silhouette every frame. Insetting the
+     clip radius by half a pixel keeps the silhouette safely away
+     from the layer's rasterization boundary so it can't be
+     snapped flat. */
+  clip-path: circle(calc(50% - 0.5px));
+  contain: paint;
 }
 
 .circles--top > .circle:nth-child(1) { --float-duration: 22s; --float-delay:  -3s; --float-x:  14px; --float-y: -18px; animation-name: circle-float-inward; }
