@@ -370,9 +370,11 @@ h4 {
 }
 
 mark {
-  background-color: transparent;
-  color: var(--color-text-strong);
-  font-weight: 600;
+  /* Whitened amber — readable warm emphasis that stays distinct from
+     link amber by leaning toward the cream text color. */
+  background: transparent;
+  color: color-mix(in oklch, var(--color-accent) 65%, var(--color-text-strong));
+  font-weight: 650;
 }
 
 p.lede {
