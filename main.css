@@ -265,21 +265,25 @@ html {
   background-color: var(--color-background);
   background-image: linear-gradient(
     to bottom,
-    var(--color-red-700)     0,
-    var(--color-red-700)   15px,
-    var(--color-background) 15px,
-    var(--color-background) 17px,
-    var(--color-red-500)   17px,
-    var(--color-red-500)   32px,
+    var(--color-stripe) 0,
+    var(--color-stripe) 20px,
+    var(--color-background) 20px,
+    var(--color-background) 22px,
+    var(--color-stripe) 22px,
+    var(--color-stripe) 32px,
     var(--color-background) 32px,
     var(--color-background) 34px,
-    var(--color-orange-500) 34px,
-    var(--color-orange-500) 49px,
+    var(--color-stripe) 34px,
+    var(--color-stripe) 40px,
+    var(--color-background) 40px,
+    var(--color-background) 46px,
+    var(--color-stripe) 46px,
+    var(--color-stripe) 49px,
     var(--color-background) 49px,
-    var(--color-background) 51px,
-    var(--color-amber-500)  51px,
-    var(--color-amber-500)  66px,
-    transparent 66px
+    var(--color-background) 59px,
+    var(--color-stripe) 59px,
+    var(--color-stripe) 61px,
+    transparent 61px
   );
   background-repeat: no-repeat;
   overflow-x: clip;
