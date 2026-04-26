@@ -816,6 +816,12 @@ blockquote p:first-child::before {
      approaches the desktop breakpoint. */
   --scene-width: min(100vw, 480px);
 }
+.circles--top-left {
+  top: 0;
+  left: 0;
+  /* Hidden on mobile — the right cluster already fills the top row. */
+  display: none;
+}
 .circles--bottom {
   bottom: calc(var(--floor-height) * 0.4);
   left: 0;
@@ -831,8 +837,10 @@ blockquote p:first-child::before {
   top: calc((var(--cy) - var(--r)) * var(--unit));
 }
 
-.circles--top .circle {
-  border: 4px solid var(--color-background);
+
+.circles--top .circle,
+.circles--top-left .circle {
+  border: 3px solid var(--color-background);
 }
 
 .circle--orange {
@@ -845,84 +853,116 @@ blockquote p:first-child::before {
   background: var(--color-amber);
 }
 
+/* Top circles: 2 stripes of *-300 over *-500 at the top dither into solid
+   *-500 through the middle, then 2 stripes of *-500 over *-700 at the
+   bottom dither into the dark variant used by the floor orbs. */
+.circles--top .circle--orange,
+.circles--top-left .circle--orange {
+  background: linear-gradient(
+    to bottom,
+    var(--color-orange-300)  0%,
+    var(--color-orange-300) 10%,
+    var(--color-orange-500) 10%,
+    var(--color-orange-500) 12%,
+    var(--color-orange-300) 12%,
+    var(--color-orange-300) 17%,
+    var(--color-orange-500) 17%,
+    var(--color-orange-500) 66%,
+    var(--color-orange-700) 66%,
+    var(--color-orange-700) 69%,
+    var(--color-orange-500) 69%,
+    var(--color-orange-500) 78%,
+    var(--color-orange-700) 78%,
+    var(--color-orange-700) 83%,
+    var(--color-orange-500) 83%,
+    var(--color-orange-500) 87%,
+    var(--color-orange-700) 87%
+  );
+}
+.circles--top .circle--red,
+.circles--top-left .circle--red {
+  background: linear-gradient(
+    to bottom,
+    var(--color-red-300)  0%,
+    var(--color-red-300) 10%,
+    var(--color-red-500) 10%,
+    var(--color-red-500) 12%,
+    var(--color-red-300) 12%,
+    var(--color-red-300) 17%,
+    var(--color-red-500) 17%,
+    var(--color-red-500) 66%,
+    var(--color-red-700) 66%,
+    var(--color-red-700) 69%,
+    var(--color-red-500) 69%,
+    var(--color-red-500) 78%,
+    var(--color-red-700) 78%,
+    var(--color-red-700) 83%,
+    var(--color-red-500) 83%,
+    var(--color-red-500) 87%,
+    var(--color-red-700) 87%
+  );
+}
+.circles--top .circle--amber,
+.circles--top-left .circle--amber {
+  background: linear-gradient(
+    to bottom,
+    var(--color-amber-300)  0%,
+    var(--color-amber-300) 10%,
+    var(--color-amber-500) 10%,
+    var(--color-amber-500) 12%,
+    var(--color-amber-300) 12%,
+    var(--color-amber-300) 17%,
+    var(--color-amber-500) 17%,
+    var(--color-amber-500) 66%,
+    var(--color-amber-700) 66%,
+    var(--color-amber-700) 69%,
+    var(--color-amber-500) 69%,
+    var(--color-amber-500) 78%,
+    var(--color-amber-700) 78%,
+    var(--color-amber-700) 83%,
+    var(--color-amber-500) 83%,
+    var(--color-amber-500) 87%,
+    var(--color-amber-700) 87%
+  );
+}
+
 /* Floor circles read as posterized 3D orbs — hard-stop radial
-   gradients keep the retro, dithered feel of the rest of the page. */
+   gradients keep the retro, dithered feel of the rest of the page.
+   Highlight is fixed at top-center; each orb is rotated by --light-angle
+   so the highlight aims toward the shared light source. */
+.circles--bottom .circle {
+  transform: rotate(var(--light-angle, 0deg));
+}
 .circles--bottom .circle--orange {
   background: radial-gradient(
-    circle at 32% 28%,
-    var(--color-orange-300)  0   18%,
-    var(--color-orange-500) 18%  65%,
-    var(--color-orange-700) 65% 100%
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-orange-300)  0                      15%,
+    var(--color-orange-500) 15%  var(--shadow-stop, 74%),
+    var(--color-orange-700)      var(--shadow-stop, 74%)
   );
 }
 .circles--bottom .circle--red {
   background: radial-gradient(
-    circle at 32% 28%,
-    var(--color-red-300)  0   18%,
-    var(--color-red-500) 18%  65%,
-    var(--color-red-700) 65% 100%
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-red-300)  0                      15%,
+    var(--color-red-500) 15%  var(--shadow-stop, 74%),
+    var(--color-red-700)      var(--shadow-stop, 74%)
   );
 }
 .circles--bottom .circle--amber {
   background: radial-gradient(
-    circle at 32% 28%,
-    var(--color-amber-300)  0   18%,
-    var(--color-amber-500) 18%  65%,
-    var(--color-amber-700) 65% 100%
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-amber-300)  0                      15%,
+    var(--color-amber-500) 15%  var(--shadow-stop, 74%),
+    var(--color-amber-700)      var(--shadow-stop, 74%)
   );
 }
 
-/* Subtle bubble-like drift for top circles only; each has its own
-   duration, delay, and x/y offset so they wander out of sync.
-   Animates `transform` (not the individual `translate` property) and
-   promotes each circle to its own layer to avoid subpixel snapping
-   artifacts that can flatten the top/bottom of rounded edges. */
-@keyframes circle-float {
-  0%   { transform: translate3d(0, 0, 0); }
-  25%  { transform: translate3d(var(--float-x, 6px), var(--float-y, -10px), 0); }
-  50%  { transform: translate3d(calc(var(--float-x, 6px) * -0.7), calc(var(--float-y, -10px) * 0.3), 0); }
-  75%  { transform: translate3d(calc(var(--float-x, 6px) * 0.4), calc(var(--float-y, -10px) * -0.5), 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-/* Variant for circles hugging the scene's left edge — horizontal drift
-   stays non-negative so they never escape outward. */
-@keyframes circle-float-inward {
-  0%   { transform: translate3d(0, 0, 0); }
-  25%  { transform: translate3d(var(--float-x, 6px), var(--float-y, -10px), 0); }
-  50%  { transform: translate3d(calc(var(--float-x, 6px) * 0.5), calc(var(--float-y, -10px) * 0.3), 0); }
-  75%  { transform: translate3d(calc(var(--float-x, 6px) * 0.2), calc(var(--float-y, -10px) * -0.5), 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-.circles--top > .circle {
-  animation: circle-float var(--float-duration, 24s) ease-in-out infinite;
-  animation-delay: var(--float-delay, 0s);
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  /* Safari occasionally shaves a pixel off rounded edges when
-     rasterizing the promoted layer during transform animations.
-     A clip-path uses a different (always-AA'd) path and restores
-     the perfectly round silhouette every frame. Insetting the
-     clip radius by half a pixel keeps the silhouette safely away
-     from the layer's rasterization boundary so it can't be
-     snapped flat. */
-  clip-path: circle(calc(50% - 0.5px));
-  contain: paint;
-}
-
-.circles--top > .circle:nth-child(1) { --float-duration: 22s; --float-delay:  -3s; --float-x:  14px; --float-y: -18px; animation-name: circle-float-inward; }
-.circles--top > .circle:nth-child(2) { --float-duration: 28s; --float-delay:  -8s; --float-x: -10px; --float-y: -22px; }
-.circles--top > .circle:nth-child(3) { --float-duration: 20s; --float-delay: -14s; --float-x:  18px; --float-y: -14px; }
-.circles--top > .circle:nth-child(4) { --float-duration: 26s; --float-delay:  -5s; --float-x: -14px; --float-y: -26px; }
-.circles--top > .circle:nth-child(5) { --float-duration: 18s; --float-delay: -11s; --float-x:  10px; --float-y: -10px; }
-.circles--top > .circle:nth-child(6) { --float-duration: 24s; --float-delay: -17s; --float-x: -18px; --float-y: -16px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .circles--top > .circle {
-    animation: none;
-  }
+/* Hide three of the top planets at all sizes */
+.circles--top > .circle:nth-child(1),
+.circles--top > .circle:nth-child(4),
+.circles--top > .circle:nth-child(5) {
+  display: none;
 }
 
 /* Mobile top: viewBox 1016 x 1095 */
@@ -933,17 +973,19 @@ blockquote p:first-child::before {
 .circles--top > .circle:nth-child(5) { --cx: 684.5; --cy: 695.5; --r: 82.5;  }
 .circles--top > .circle:nth-child(6) { --cx: 994.5; --cy: 88.5;  --r: 82.5;  }
 
-/* Mobile bottom: viewBox 1125 x 540 */
+/* Mobile bottom: viewBox 1125 x 540
+   Light source at approx (650, -800) — top, slightly right of center.
+   --light-angle = atan2(light_x − cx, −(light_y − cy)) */
 .circles--bottom {
   --view-w: 1125;
   --view-h: 540;
 }
-.circles--bottom > .circle:nth-child(1) { --cx: 113;   --cy: 395;   --r: 145;   }
-.circles--bottom > .circle:nth-child(2) { --cx: 630;   --cy: 395;   --r: 145;   }
-.circles--bottom > .circle:nth-child(3) { --cx: 371.5; --cy: 187.5; --r: 187.5; }
-.circles--bottom > .circle:nth-child(4) { --cx: 962.5; --cy: 352.5; --r: 187.5; }
-.circles--bottom > .circle:nth-child(5) { --cx: 331.5; --cy: 457.5; --r: 82.5;  }
-.circles--bottom > .circle:nth-child(6) { --cx: 741.5; --cy: 197.5; --r: 82.5;  }
+.circles--bottom > .circle:nth-child(1) { --cx: 113;   --cy: 395;   --r: 145;   --light-angle:  24deg; --ellipse-y: 82%; --shadow-stop: 77%; }
+.circles--bottom > .circle:nth-child(2) { --cx: 630;   --cy: 395;   --r: 145;   --light-angle:   1deg; --ellipse-y: 90%; --shadow-stop: 70%; }
+.circles--bottom > .circle:nth-child(3) { --cx: 371.5; --cy: 187.5; --r: 187.5; --light-angle:  16deg; --ellipse-y: 86%; --shadow-stop: 73%; }
+.circles--bottom > .circle:nth-child(4) { --cx: 962.5; --cy: 352.5; --r: 187.5; --light-angle: -15deg; --ellipse-y: 87%; --shadow-stop: 72%; }
+.circles--bottom > .circle:nth-child(5) { --cx: 331.5; --cy: 457.5; --r: 82.5;  --light-angle:  14deg; --ellipse-y: 87%; --shadow-stop: 72%; }
+.circles--bottom > .circle:nth-child(6) { --cx: 741.5; --cy: 197.5; --r: 82.5;  --light-angle:  -5deg; --ellipse-y: 90%; --shadow-stop: 70%; }
 
 @media screen and (min-width: 600px) {
   /* Desktop top: anchored to the right of the viewport, overlapping the
@@ -963,8 +1005,22 @@ blockquote p:first-child::before {
   .circles--top > .circle:nth-child(5) { --cx: 492.875; --cy: 502.875; --r: 61.875;  }
   .circles--top > .circle:nth-child(6) { --cx: 897.875; --cy: 89.875;  --r: 61.875;  }
 
+  /* Desktop top-left: a small counterweight cluster anchored to the
+     left edge to balance the dense right cluster. One of each size. */
+  .circles--top-left {
+    display: block;
+    --view-w: 1070;
+    --view-h: 891;
+    --scene-width: 36vw;
+    left: 0;
+  }
+  .circles--top-left > .circle:nth-child(1) { --cx: 900; --cy: 140; --r: 108.75;  } /* orange — medium */
+  .circles--top-left > .circle:nth-child(2) { --cx: 170; --cy: 170; --r: 140.625; } /* red    — large  */
+  .circles--top-left > .circle:nth-child(3) { --cx: 530; --cy: 300; --r:  61.875; } /* amber  — small  */
+
   /* Desktop bottom: a band tucked in from both sides. Tweak
-     --scene-width to resize and --scene-left to slide horizontally. */
+     --scene-width to resize and --scene-left to slide horizontally.
+     Light source at approx (1300, -800) — top, slightly right of center. */
   .circles--bottom {
     --view-w: 2404;
     --view-h: 282;
@@ -972,10 +1028,10 @@ blockquote p:first-child::before {
     --scene-left: 5vw;
     left: var(--scene-left);
   }
-  .circles--bottom > .circle:nth-child(1) { --cx: 108.75;   --cy: 171.75;  --r: 108.75;  }
-  .circles--bottom > .circle:nth-child(2) { --cx: 959.75;   --cy: 171.75;  --r: 108.75;  }
-  .circles--bottom > .circle:nth-child(3) { --cx: 445.625;  --cy: 140.625; --r: 140.625; }
-  .circles--bottom > .circle:nth-child(4) { --cx: 2262.625; --cy: 140.625; --r: 140.625; }
-  .circles--bottom > .circle:nth-child(5) { --cx: 251.875;  --cy: 78.875;  --r: 61.875;  }
-  .circles--bottom > .circle:nth-child(6) { --cx: 1217.875; --cy: 218.875; --r: 61.875;  }
+  .circles--bottom > .circle:nth-child(1) { --cx: 108.75;   --cy: 171.75;  --r: 108.75;  --light-angle:  51deg; --ellipse-y: 57%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(2) { --cx: 959.75;   --cy: 171.75;  --r: 108.75;  --light-angle:  19deg; --ellipse-y: 85%; --shadow-stop:  74%; }
+  .circles--bottom > .circle:nth-child(3) { --cx: 445.625;  --cy: 140.625; --r: 140.625; --light-angle:  42deg; --ellipse-y: 67%; --shadow-stop:  94%; }
+  .circles--bottom > .circle:nth-child(4) { --cx: 2262.625; --cy: 140.625; --r: 140.625; --light-angle: -46deg; --ellipse-y: 63%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(5) { --cx: 251.875;  --cy: 78.875;  --r: 61.875;  --light-angle:  50deg; --ellipse-y: 58%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(6) { --cx: 1217.875; --cy: 218.875; --r: 61.875;  --light-angle:   5deg; --ellipse-y: 90%; --shadow-stop:  70%; }
 }
