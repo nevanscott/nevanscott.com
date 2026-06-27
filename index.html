@@ -24,6 +24,7 @@ templateEngineOverride: liquid,md
       type="font/woff2"
       crossorigin
     />
+    <meta name="theme-color" content="#37322f" />
     <meta
       name="description"
       content="Grow your design career with in-demand technical and strategic skills"
@@ -63,28 +64,22 @@ templateEngineOverride: liquid,md
             <div class="content">
               <header>
                 <h1>Nevan Scott</h1>
-                <p>
-                  Head of Education at
-                  <a href="https://buttonschool.com">Button School</a>
-                </p>
               </header>
               <p>
-                Nevan has been teaching designers and developers for over a
-                decade, and still loves every minute of it! He’s led programs at
-                General Assembly and Ironhack, and coached designers and
-                developers at every stage of their careers. He’s worked on
-                design systems for the Swiss Red Cross, Northeastern University,
-                Rustic Pathways, and Buzzfeed.
+                Hi there! I run <a href="https://buttonschool.com">Button School</a> from my home base in Barcelona. My time is split between teaching, developing new courses, and growing the Button School community.
               </p>
               <p>
-                He writes in the first person at
+                I’ve been teaching for a while now (15 years?), and I absolutely love working with students. My background is in both design and development, primarily for web stuff and design systems.
+              </p>
+              <p>
+                These days, you can find me teaching <a href="https://maven.com/button-school/coding-course">coding for designers</a> and <a href="https://maven.com/button-school/advanced-ui-design">interface and interaction design</a>. If either of these interest you, I’d love to have you in class!
+              </p>
+              <p>
+                I occasionally write at
                 <a href="https://notated.org">notated.org</a>.
               </p>
               <p>
-                Send inquiries to
-                <a href="mailto:nevan@buttonschool.com"
-                  >nevan@buttonschool.com</a
-                >
+                Drop me a line at <a href="mailto:nevan@buttonschool.com">nevan@buttonschool.com</a>
               </p>
             </div>
           </div>
@@ -96,8 +91,7 @@ templateEngineOverride: liquid,md
           <header>
             <h3>Where are they now?</h3>
             <p class="lede">
-              Nevan’s students have been hired by top companies as designers,
-              researchers, and leaders all over the world.
+              My students have gone on to work as designers, researchers, and leaders all over the world.
               <span class="note">*</span>
             </p>
           </header>
@@ -155,9 +149,7 @@ templateEngineOverride: liquid,md
           </div>
           <p class="footnote">
             <span class="note">*</span>
-            Yes, this list is meant to be impressive. Nevan’s taught over 700
-            students, the majority of whom work at mighty fine places that you
-            just might not have heard of. Name recognition isn’t everything!
+            Yes, this list is meant to be impressive. I’ve taught 1000+ students, and the majority of them work at mighty fine places that you just might not have heard of. Name recognition isn’t everything!
           </p>
         </article>
         <article>
@@ -238,7 +230,7 @@ templateEngineOverride: liquid,md
         <h2>Colophon</h2>
         <article>
           <p>
-            This site it built with handspun HTML and CSS, and cobbled together
+            This site is built with handspun HTML and CSS, and cobbled together
             with <a href="https://www.11ty.dev">Eleventy</a>. Text is set in
             <a href="https://socio-type.com/demo/gestura-text">Gestura Text</a>
             by Joe Leadbeater, Diana Ovezea, and Nigel Bates; and
@@ -255,22 +247,44 @@ templateEngineOverride: liquid,md
         </article>
       </section>
     </main>
-    <script>
-      const ctas = document.querySelectorAll(".cta");
-      ctas.forEach(function (cta) {
-        cta.addEventListener("click", function (e) {
-          const action = e.target.text.trim();
-          const course = e.target
-            .closest("article")
-            .querySelector("h3 a")
-            .text.trim();
-          plausible(action, {
-            props: {
-              course: course,
-            },
-          });
-        });
-      });
-    </script>
+    <svg
+      class="floor"
+      viewBox="0 267 2000 133"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <g class="floor-rungs">
+        <line x1="0" y1="267" x2="2000" y2="267" />
+        <line x1="0" y1="278" x2="2000" y2="278" />
+        <line x1="0" y1="295" x2="2000" y2="295" />
+        <line x1="0" y1="320" x2="2000" y2="320" />
+        <line x1="0" y1="355" x2="2000" y2="355" />
+      </g>
+      <g class="floor-spokes">
+        <line x1="65.5"   y1="267" x2="-400"  y2="400" />
+        <line x1="199"    y1="267" x2="-200"  y2="400" />
+        <line x1="332.5"  y1="267" x2="0"     y2="400" />
+        <line x1="466"    y1="267" x2="200"   y2="400" />
+        <line x1="599.5"  y1="267" x2="400"   y2="400" />
+        <line x1="733"    y1="267" x2="600"   y2="400" />
+        <line x1="866.5"  y1="267" x2="800"   y2="400" />
+        <line x1="1000"   y1="267" x2="1000"  y2="400" />
+        <line x1="1133.5" y1="267" x2="1200"  y2="400" />
+        <line x1="1267"   y1="267" x2="1400"  y2="400" />
+        <line x1="1400.5" y1="267" x2="1600"  y2="400" />
+        <line x1="1534"   y1="267" x2="1800"  y2="400" />
+        <line x1="1667.5" y1="267" x2="2000"  y2="400" />
+        <line x1="1801"   y1="267" x2="2200"  y2="400" />
+        <line x1="1934.5" y1="267" x2="2400"  y2="400" />
+      </g>
+    </svg>
+    <div class="circles circles--bottom" aria-hidden="true">
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--orange"></span>
+      <span class="circle circle--red"></span>
+      <span class="circle circle--red"></span>
+      <span class="circle circle--amber"></span>
+      <span class="circle circle--amber"></span>
+    </div>
   </body>
 </html>

@@ -197,42 +197,97 @@ table {
   --space-s-l: clamp(1.13rem, calc(0.65rem + 2.39vw), 2.5rem);
 }
 
-/* @link https://tailwindcss.com/docs/customizing-colors */
-
 :root {
-  /* Zinc */
-  --color-zinc-50: #fafafa;
-  --color-zinc-100: #f4f4f5;
-  --color-zinc-200: #e4e4e7;
-  --color-zinc-300: #d4d4d8;
-  --color-zinc-400: #a1a1aa;
-  --color-zinc-500: #71717a;
-  --color-zinc-600: #52525b;
-  --color-zinc-700: #3f3f46;
-  --color-zinc-800: #27272a;
-  --color-zinc-900: #18181b;
-  --color-zinc-950: #09090b;
+  /* Fonts */
+  --font-serif: "Gestura", Georgia, serif;
+  --font-sans:  "Inter", system-ui, sans-serif;
 
-  /* Indigo */
-  --color-indigo-50: #eef2ff;
-  --color-indigo-100: #e0e7ff;
-  --color-indigo-200: #c7d2fe;
-  --color-indigo-300: #a5b4fc;
-  --color-indigo-400: #818cf8;
-  --color-indigo-500: #6366f1;
-  --color-indigo-600: #4f46e5;
-  --color-indigo-700: #4338ca;
-  --color-indigo-800: #3730a3;
-  --color-indigo-900: #312e81;
-  --color-indigo-950: #1e1b4b;
+  /* Palette — raw paints (dark → light, then brand accents) */
+  --color-chocolate: #37322f;
+  --color-cocoa:     #453f3b;
+  --color-mocha:     #524c47;
+  --color-taupe:     #878078;
+  --color-vanilla:   #a49c8e;
+  --color-latte:     #bcb4ac;
+  --color-cream:     #ede7df;
+  --color-white:     #ffffff;
+
+  /* Accent ramps — 3 steps each, hue-shifted along the spectrum so
+     each step gets its lightness partly from chroma: highlights drift
+     toward yellow, shadows drift toward red → purple. */
+  --color-amber-300:  #f2c456;  /* yellow-gold     */
+  --color-amber-500:  #edb53f;  /* amber (base)    */
+  --color-amber-700:  #a55f1a;  /* burnt orange    */
+
+  --color-orange-300: #ed8936;  /* bright orange   */
+  --color-orange-500: #ea6d2b;  /* orange (base)   */
+  --color-orange-700: #8c2e1a;  /* red-brown       */
+
+  --color-red-300:    #dc5a43;  /* warm red        */
+  --color-red-500:    #d64139;  /* red (base)      */
+  --color-red-700:    #7d2638;  /* wine            */
+
+  /* Convenience aliases to the base step of each ramp */
+  --color-amber:  var(--color-amber-500);
+  --color-orange: var(--color-orange-500);
+  --color-red:    var(--color-red-500);
+
+  /* Theme — semantic tokens composed from the palette */
+  --color-background:      var(--color-chocolate);
+  --color-text:            var(--color-cream);
+  --color-text-strong:     var(--color-white);
+  --color-text-muted:      var(--color-latte);
+
+  --color-border:          var(--color-mocha);
+  --color-border-subtle:   var(--color-cocoa);
+  --color-border-emphasis: var(--color-taupe);
+
+  --color-stripe:          var(--color-vanilla);
+  --color-accent:          var(--color-amber);
+  --color-highlight:       var(--color-orange);
+
+  /* Decorative scene reserved at the bottom of the page.
+     --floor-height = size of the SVG grid (the visible floor only).
+     --scene-height = total height of the orb cluster sitting on top
+     of the floor. Body padding reserves the larger of the two. */
+  --floor-height: calc(100vw * 180 / 1125);
+  --scene-height: calc(100vw * 540 / 1125);
 }
 
-:root {
-  --font-serif: "Gestura", Georgia, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+@media screen and (min-width: 600px) {
+  :root {
+    --floor-height: max(calc(80vw * 94 / 2404), 73px);
+    --scene-height: calc(80vw * 282 / 2404);
+  }
 }
 
 html {
+  background-color: var(--color-background);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-red-700)     0,
+    var(--color-red-700)    20px,
+    var(--color-background) 20px,
+    var(--color-background) 22px,
+    var(--color-red-500)    22px,
+    var(--color-red-500)    32px,
+    var(--color-background) 32px,
+    var(--color-background) 34px,
+    var(--color-orange-500) 34px,
+    var(--color-orange-500) 40px,
+    var(--color-background) 40px,
+    var(--color-background) 46px,
+    var(--color-amber-500)  46px,
+    var(--color-amber-500)  49px,
+    var(--color-background) 49px,
+    var(--color-background) 59px,
+    var(--color-amber-300)  59px,
+    var(--color-amber-300)  61px,
+    transparent 61px
+  );
+  background-repeat: no-repeat;
+  overflow-x: clip;
+  position: relative;
   scroll-behavior: smooth;
 }
 
@@ -243,24 +298,28 @@ html {
 }
 
 body {
-  background-color: white;
-  color: var(--color-zinc-600);
+  background-color: transparent;
+  overflow-x: clip;
+  color: var(--color-text);
   font-family: var(--font-serif);
   font-size: var(--step-0);
   font-weight: 400;
   line-height: 1.45;
   margin: var(--space-2xl-3xl) auto;
   padding: var(--space-m-l);
+  padding-bottom: calc(var(--space-m-l) + max(var(--floor-height), var(--scene-height) + var(--floor-height) * 0.4));
   max-width: 55ch;
 }
 
 a {
-  color: inherit;
-  text-decoration-color: var(--color-indigo-600);
-  transition: color 200ms;
+  color: var(--color-accent);
+  text-decoration-color: var(--color-border);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  transition: text-decoration-color 200ms;
 }
 a:hover {
-  color: var(--color-indigo-600);
+  text-decoration-color: var(--color-border-emphasis);
 }
 
 img {
@@ -280,7 +339,7 @@ main {
 }
 
 h1 {
-  color: var(--color-zinc-800);
+  color: var(--color-text-strong);
   font-size: var(--step-3);
   line-height: 1.1;
   font-weight: 700;
@@ -289,20 +348,17 @@ h1 {
 }
 
 h2 {
-  background-color: white;
-  color: var(--color-zinc-500);
+  background-color: var(--color-background);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-weight: 700;
   margin-inline: calc(-1 * var(--space-m-l));
   padding-block: var(--space-s-m) 0;
   padding-inline: var(--space-m-l);
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 h2::after {
-  border-bottom: solid 1px var(--color-zinc-200);
+  border-bottom: solid 1px var(--color-border);
   content: "";
   display: block;
   margin-top: var(--space-3xs-2xs);
@@ -310,17 +366,19 @@ h2::after {
 
 h3,
 h4 {
-  color: var(--color-zinc-800);
+  color: var(--color-text-strong);
 }
 
 mark {
-  background-color: #fef3c7;
-  color: var(--color-zinc-950);
-  font-weight: 450;
+  /* Whitened amber — readable warm emphasis that stays distinct from
+     link amber by leaning toward the cream text color. */
+  background: transparent;
+  color: color-mix(in oklch, var(--color-accent) 65%, var(--color-text-strong));
+  font-weight: 650;
 }
 
 p.lede {
-  color: var(--color-zinc-800);
+  color: var(--color-text-strong);
   text-wrap: balance;
 }
 
@@ -370,10 +428,10 @@ article header {
 article footer {
   position: sticky;
   bottom: -1px;
-  background-color: white;
-  border-top: solid 0.5px var(--color-zinc-100);
-  border-bottom: solid 2px var(--color-zinc-100);
-  box-shadow: 0 -8px 16px -16px rgba(0, 0, 0, 0.25);
+  background-color: var(--color-background);
+  border-top: solid 0.5px var(--color-border-subtle);
+  border-bottom: solid 2px var(--color-border-subtle);
+  box-shadow: 0 -8px 16px -16px rgba(0, 0, 0, 0.5);
   padding-block: var(--space-s);
   margin-top: var(--space-l);
   align-items: center;
@@ -389,46 +447,13 @@ article footer > * {
 }
 
 .tag {
-  color: var(--color-indigo-600);
+  color: var(--color-accent);
   font-family: var(--font-sans);
   font-weight: 650;
-}
-
-.cta {
-  background-color: var(--color-indigo-600);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 0 var(--color-indigo-800);
-  color: white;
-  display: block;
-  font-family: var(--font-sans);
-  font-weight: 650;
-  padding: var(--space-xs);
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 200ms;
-}
-.cta:hover {
-  background-color: var(--color-indigo-700);
-  box-shadow: 0 4px 0 var(--color-indigo-900);
-  color: white;
-}
-.cta:active {
-  box-shadow: 0 2px 0 var(--color-indigo-900);
-  translate: 0 2px;
-}
-.cta.outline {
-  background-color: white;
-  border: 3px solid;
-  box-shadow: none;
-  color: var(--color-zinc-800);
-}
-.cta.outline:hover {
-  background-color: white;
-  color: var(--color-indigo-600);
 }
 
 .deets {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   display: flex;
   flex-wrap: wrap;
   font-family: var(--font-sans);
@@ -442,17 +467,17 @@ article footer > * {
   gap: 0.25em;
 }
 .deets li:not(:first-child)::before {
-  color: var(--color-zinc-300);
+  color: var(--color-border);
   content: "•";
 }
 
 .meta dt {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-weight: 550;
 }
 .meta dd {
-  color: var(--color-zinc-800);
+  color: var(--color-text-strong);
   font-weight: 550;
   margin: 0;
   padding: 0;
@@ -463,7 +488,7 @@ article footer > * {
 }
 .nevan::before {
   aspect-ratio: 1;
-  background-color: #fcd34d;
+  background-color: var(--color-highlight);
   background-size: cover;
   background-image: url(/nevan.png);
   border-radius: 50%;
@@ -497,13 +522,13 @@ article footer > * {
   gap: var(--space-s);
 }
 .bio header p {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-weight: 550;
 }
 .bio img {
-  background-color: #fcd34d;
+  background-color: var(--color-amber);
   border-radius: 9999px;
 }
 
@@ -523,7 +548,7 @@ article footer > * {
   display: contents;
 }
 .listing h4 {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
   font-weight: 600;
@@ -532,6 +557,12 @@ article footer > * {
 .favicon {
   white-space: nowrap;
 }
+/* Company icons are desaturated and inverted so dark-on-light favicons
+   read as light silhouettes against the dark page background, while
+   staying color-consistent across 30+ different brand marks. A screen
+   blend with the page background softens the near-white output and
+   lets the warm chocolate tint bleed through the icon silhouettes so
+   they feel integrated with the palette instead of cold neutral gray. */
 .favicon::before {
   aspect-ratio: 1;
   background-size: contain;
@@ -541,8 +572,10 @@ article footer > * {
   border-radius: 4px;
   content: "";
   display: inline-block;
-  margin: 0 var(--space-2xs) 0 0;
+  filter: grayscale(1) invert(1) brightness(0.95) contrast(0.9) opacity(0.85);
   height: 16px;
+  margin: 0 var(--space-2xs) 0 0;
+  mix-blend-mode: screen;
   width: 16px;
 }
 .favicon.accenture::before {
@@ -602,7 +635,6 @@ article footer > * {
 }
 .favicon.king::before {
   background-image: url(/icons/king.svg);
-  filter: brightness(90%) contrast(125%);
 }
 .favicon.manyone::before {
   background-image: url(/icons/manyone.png);
@@ -637,26 +669,68 @@ article footer > * {
 }
 .favicon.typeform::before {
   background-image: url(/icons/typeform.png);
-  filter: brightness(95%);
 }
 .favicon.ubisoft::before {
   background-image: url(/icons/ubisoft.svg);
 }
 
+/* Icons whose source marks are already light on transparent — the
+   global invert would flip them back to dark. Skip the invert and
+   slightly brighten instead so they read against the dark bg. */
+.favicon.amex::before,
+.favicon.bbva::before,
+.favicon.google::before,
+.favicon.instagram::before,
+.favicon.morganstanley::before,
+.favicon.tdameritrade::before {
+  filter: grayscale(1) brightness(1.05) contrast(0.9) opacity(0.9);
+}
+
+/* Icons whose source marks are dark but low-contrast, thin, or busy —
+   the default invert lands them in murky territory. Brightness boost
+   and full opacity push them into legible range. */
+.favicon.barclays::before,
+.favicon.etsy::before,
+.favicon.glovo::before,
+.favicon.king::before {
+  filter: grayscale(1) invert(1) brightness(1.4) contrast(0.9);
+}
+
+/* Per-icon fine-tuning after the group baselines. Each one overrides
+   the filter it would otherwise inherit above. */
+.favicon.condenast::before {
+  filter: grayscale(1) invert(1) brightness(0.95) contrast(1.3) opacity(0.9);
+}
+.favicon.glovo::before {
+  filter: grayscale(1) invert(1) brightness(1.4) contrast(1.3);
+}
+.favicon.interactius::before {
+  filter: grayscale(1) invert(1) brightness(1.3) contrast(0.9) opacity(1);
+}
+.favicon.king::before {
+  filter: grayscale(1) invert(1) brightness(3) contrast(0.9);
+}
+.favicon.morganstanley::before {
+  filter: grayscale(1) brightness(1.55) contrast(0.9) opacity(0.95);
+}
+.favicon.tdameritrade::before {
+  filter: grayscale(1) brightness(1.05) contrast(0.9) opacity(0.9);
+}
+
 .avatar {
-  background-color: var(--color-zinc-200);
+  background-color: var(--color-border);
   border-radius: var(--step-5);
   height: var(--step-5);
   width: var(--step-5);
 }
 
 cite {
-  color: var(--color-zinc-800);
+  color: var(--color-text-strong);
   font-weight: 500;
 }
 
 .job {
-  color: var(--color-zinc-500);
+  color: var(--color-text-muted);
   font-family: var(--font-sans);
   font-size: var(--step--1);
 }
@@ -674,7 +748,7 @@ figure {
 }
 
 blockquote p:first-child::before {
-  color: var(--color-zinc-300);
+  color: var(--color-border);
   content: "“";
   float: left;
   font-size: var(--step-4);
@@ -684,7 +758,7 @@ blockquote p:first-child::before {
 }
 
 .note {
-  color: var(--color-indigo-600);
+  color: var(--color-accent);
 }
 
 .footnote {
@@ -692,9 +766,272 @@ blockquote p:first-child::before {
   margin-top: var(--space-s);
 }
 .footnote::before {
-  border-top: solid 1px var(--color-zinc-300);
+  border-top: solid 1px var(--color-border);
   content: "";
   display: block;
   margin-bottom: var(--space-2xs);
   width: var(--step-5);
+}
+
+.floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--floor-height);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -2;
+}
+.floor-rungs line,
+.floor-spokes line {
+  stroke: var(--color-stripe);
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+  fill: none;
+}
+
+.circles {
+  position: absolute;
+  pointer-events: none;
+  overflow-x: clip;
+  z-index: -1;
+
+  /* viewBox of the scene; overridden per variant + breakpoint */
+  --view-w: 1016;
+  --view-h: 1095;
+
+  /* how much of the viewport the scene fills (overridden on desktop) */
+  --scene-width: 100vw;
+  --unit: calc(var(--scene-width) / var(--view-w));
+
+  width: calc(var(--view-w) * var(--unit));
+  height: calc(var(--view-h) * var(--unit));
+}
+
+.circles--top {
+  top: 0;
+  right: 0;
+  /* Cap the mobile scene so circles stop growing as the viewport
+     approaches the desktop breakpoint. */
+  --scene-width: min(100vw, 480px);
+}
+.circles--top-left {
+  top: 0;
+  left: 0;
+  /* Hidden on mobile — the right cluster already fills the top row. */
+  display: none;
+}
+.circles--bottom {
+  bottom: calc(var(--floor-height) * 0.4);
+  left: 0;
+}
+
+.circle {
+  position: absolute;
+  display: block;
+  border-radius: calc(var(--r) * 2 * var(--unit));
+  width: calc(var(--r) * 2 * var(--unit));
+  height: calc(var(--r) * 2 * var(--unit));
+  left: calc((var(--cx) - var(--r)) * var(--unit));
+  top: calc((var(--cy) - var(--r)) * var(--unit));
+}
+
+
+.circles--top .circle,
+.circles--top-left .circle {
+  border: 3px solid var(--color-background);
+}
+
+.circle--orange {
+  background: var(--color-orange);
+}
+.circle--red {
+  background: var(--color-red);
+}
+.circle--amber {
+  background: var(--color-amber);
+}
+
+/* Top circles: 2 stripes of *-300 over *-500 at the top dither into solid
+   *-500 through the middle, then 2 stripes of *-500 over *-700 at the
+   bottom dither into the dark variant used by the floor orbs. */
+.circles--top .circle--orange,
+.circles--top-left .circle--orange {
+  background: linear-gradient(
+    to bottom,
+    var(--color-orange-300)  0%,
+    var(--color-orange-300) 10%,
+    var(--color-orange-500) 10%,
+    var(--color-orange-500) 12%,
+    var(--color-orange-300) 12%,
+    var(--color-orange-300) 17%,
+    var(--color-orange-500) 17%,
+    var(--color-orange-500) 66%,
+    var(--color-orange-700) 66%,
+    var(--color-orange-700) 69%,
+    var(--color-orange-500) 69%,
+    var(--color-orange-500) 78%,
+    var(--color-orange-700) 78%,
+    var(--color-orange-700) 83%,
+    var(--color-orange-500) 83%,
+    var(--color-orange-500) 87%,
+    var(--color-orange-700) 87%
+  );
+}
+.circles--top .circle--red,
+.circles--top-left .circle--red {
+  background: linear-gradient(
+    to bottom,
+    var(--color-red-300)  0%,
+    var(--color-red-300) 10%,
+    var(--color-red-500) 10%,
+    var(--color-red-500) 12%,
+    var(--color-red-300) 12%,
+    var(--color-red-300) 17%,
+    var(--color-red-500) 17%,
+    var(--color-red-500) 66%,
+    var(--color-red-700) 66%,
+    var(--color-red-700) 69%,
+    var(--color-red-500) 69%,
+    var(--color-red-500) 78%,
+    var(--color-red-700) 78%,
+    var(--color-red-700) 83%,
+    var(--color-red-500) 83%,
+    var(--color-red-500) 87%,
+    var(--color-red-700) 87%
+  );
+}
+.circles--top .circle--amber,
+.circles--top-left .circle--amber {
+  background: linear-gradient(
+    to bottom,
+    var(--color-amber-300)  0%,
+    var(--color-amber-300) 10%,
+    var(--color-amber-500) 10%,
+    var(--color-amber-500) 12%,
+    var(--color-amber-300) 12%,
+    var(--color-amber-300) 17%,
+    var(--color-amber-500) 17%,
+    var(--color-amber-500) 66%,
+    var(--color-amber-700) 66%,
+    var(--color-amber-700) 69%,
+    var(--color-amber-500) 69%,
+    var(--color-amber-500) 78%,
+    var(--color-amber-700) 78%,
+    var(--color-amber-700) 83%,
+    var(--color-amber-500) 83%,
+    var(--color-amber-500) 87%,
+    var(--color-amber-700) 87%
+  );
+}
+
+/* Floor circles read as posterized 3D orbs — hard-stop radial
+   gradients keep the retro, dithered feel of the rest of the page.
+   Highlight is fixed at top-center; each orb is rotated by --light-angle
+   so the highlight aims toward the shared light source. */
+.circles--bottom .circle {
+  transform: rotate(var(--light-angle, 0deg));
+}
+.circles--bottom .circle--orange {
+  background: radial-gradient(
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-orange-300)  0                      15%,
+    var(--color-orange-500) 15%  var(--shadow-stop, 74%),
+    var(--color-orange-700)      var(--shadow-stop, 74%)
+  );
+}
+.circles--bottom .circle--red {
+  background: radial-gradient(
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-red-300)  0                      15%,
+    var(--color-red-500) 15%  var(--shadow-stop, 74%),
+    var(--color-red-700)      var(--shadow-stop, 74%)
+  );
+}
+.circles--bottom .circle--amber {
+  background: radial-gradient(
+    ellipse 110% var(--ellipse-y, 90%) at 50% 15%,
+    var(--color-amber-300)  0                      15%,
+    var(--color-amber-500) 15%  var(--shadow-stop, 74%),
+    var(--color-amber-700)      var(--shadow-stop, 74%)
+  );
+}
+
+/* Hide three of the top planets at all sizes */
+.circles--top > .circle:nth-child(1),
+.circles--top > .circle:nth-child(4),
+.circles--top > .circle:nth-child(5) {
+  display: none;
+}
+
+/* Mobile top: viewBox 1016 x 1095 */
+.circles--top > .circle:nth-child(1) { --cx: 145;   --cy: 145;   --r: 145;   }
+.circles--top > .circle:nth-child(2) { --cx: 912;   --cy: 468;   --r: 145;   }
+.circles--top > .circle:nth-child(3) { --cx: 579.5; --cy: 187.5; --r: 187.5; }
+.circles--top > .circle:nth-child(4) { --cx: 994.5; --cy: 907.5; --r: 187.5; }
+.circles--top > .circle:nth-child(5) { --cx: 684.5; --cy: 695.5; --r: 82.5;  }
+.circles--top > .circle:nth-child(6) { --cx: 994.5; --cy: 88.5;  --r: 82.5;  }
+
+/* Mobile bottom: viewBox 1125 x 540
+   Light source at approx (650, -800) — top, slightly right of center.
+   --light-angle = atan2(light_x − cx, −(light_y − cy)) */
+.circles--bottom {
+  --view-w: 1125;
+  --view-h: 540;
+}
+.circles--bottom > .circle:nth-child(1) { --cx: 113;   --cy: 395;   --r: 145;   --light-angle:  24deg; --ellipse-y: 82%; --shadow-stop: 77%; }
+.circles--bottom > .circle:nth-child(2) { --cx: 630;   --cy: 395;   --r: 145;   --light-angle:   1deg; --ellipse-y: 90%; --shadow-stop: 70%; }
+.circles--bottom > .circle:nth-child(3) { --cx: 371.5; --cy: 187.5; --r: 187.5; --light-angle:  16deg; --ellipse-y: 86%; --shadow-stop: 73%; }
+.circles--bottom > .circle:nth-child(4) { --cx: 962.5; --cy: 352.5; --r: 187.5; --light-angle: -15deg; --ellipse-y: 87%; --shadow-stop: 72%; }
+.circles--bottom > .circle:nth-child(5) { --cx: 331.5; --cy: 457.5; --r: 82.5;  --light-angle:  14deg; --ellipse-y: 87%; --shadow-stop: 72%; }
+.circles--bottom > .circle:nth-child(6) { --cx: 741.5; --cy: 197.5; --r: 82.5;  --light-angle:  -5deg; --ellipse-y: 90%; --shadow-stop: 70%; }
+
+@media screen and (min-width: 600px) {
+  /* Desktop top: anchored to the right of the viewport, overlapping the
+     content column like the mockup. Tweak --scene-width to scale, and
+     --scene-right to slide the cluster horizontally. */
+  .circles--top {
+    --view-w: 1070;
+    --view-h: 891;
+    --scene-width: 36vw;
+    --scene-right: 0vw;
+    right: var(--scene-right);
+  }
+  .circles--top > .circle:nth-child(1) { --cx: 108.75;  --cy: 108.75;  --r: 108.75;  }
+  .circles--top > .circle:nth-child(2) { --cx: 788.75;  --cy: 440.75;  --r: 108.75;  }
+  .circles--top > .circle:nth-child(3) { --cx: 541.625; --cy: 151.625; --r: 140.625; }
+  .circles--top > .circle:nth-child(4) { --cx: 976.625; --cy: 749.625; --r: 140.625; }
+  .circles--top > .circle:nth-child(5) { --cx: 492.875; --cy: 502.875; --r: 61.875;  }
+  .circles--top > .circle:nth-child(6) { --cx: 897.875; --cy: 89.875;  --r: 61.875;  }
+
+  /* Desktop top-left: a small counterweight cluster anchored to the
+     left edge to balance the dense right cluster. One of each size. */
+  .circles--top-left {
+    display: block;
+    --view-w: 1070;
+    --view-h: 891;
+    --scene-width: 36vw;
+    left: 0;
+  }
+  .circles--top-left > .circle:nth-child(1) { --cx: 900; --cy: 140; --r: 108.75;  } /* orange — medium */
+  .circles--top-left > .circle:nth-child(2) { --cx: 170; --cy: 170; --r: 140.625; } /* red    — large  */
+  .circles--top-left > .circle:nth-child(3) { --cx: 530; --cy: 300; --r:  61.875; } /* amber  — small  */
+
+  /* Desktop bottom: a band tucked in from both sides. Tweak
+     --scene-width to resize and --scene-left to slide horizontally.
+     Light source at approx (1300, -800) — top, slightly right of center. */
+  .circles--bottom {
+    --view-w: 2404;
+    --view-h: 282;
+    --scene-width: 80vw;
+    --scene-left: 5vw;
+    left: var(--scene-left);
+  }
+  .circles--bottom > .circle:nth-child(1) { --cx: 108.75;   --cy: 171.75;  --r: 108.75;  --light-angle:  51deg; --ellipse-y: 57%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(2) { --cx: 959.75;   --cy: 171.75;  --r: 108.75;  --light-angle:  19deg; --ellipse-y: 85%; --shadow-stop:  74%; }
+  .circles--bottom > .circle:nth-child(3) { --cx: 445.625;  --cy: 140.625; --r: 140.625; --light-angle:  42deg; --ellipse-y: 67%; --shadow-stop:  94%; }
+  .circles--bottom > .circle:nth-child(4) { --cx: 2262.625; --cy: 140.625; --r: 140.625; --light-angle: -46deg; --ellipse-y: 63%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(5) { --cx: 251.875;  --cy: 78.875;  --r: 61.875;  --light-angle:  50deg; --ellipse-y: 58%; --shadow-stop: 100%; }
+  .circles--bottom > .circle:nth-child(6) { --cx: 1217.875; --cy: 218.875; --r: 61.875;  --light-angle:   5deg; --ellipse-y: 90%; --shadow-stop:  70%; }
 }
